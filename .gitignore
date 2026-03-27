@@ -28,3 +28,8 @@ node_modules/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Hugging Face deployment workspace
+hf_runtime/
+hf_runtime_test/
+.hf_build/

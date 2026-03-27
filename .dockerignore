@@ -1,0 +1,17 @@
+.git
+.gitignore
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+hf_runtime/
+hf_runtime_test/
+.hf_build/
+输出/
+outputs/
+dist_run*/

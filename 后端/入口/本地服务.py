@@ -3,6 +3,7 @@
 import argparse
 import json
 import logging
+import os
 import sys
 import time
 from collections import OrderedDict
@@ -45,8 +46,8 @@ from 后端.时间策略 import resolve_price_window_from_price_dir
 from 后端.数据加载 import load_config, load_name_map, resolve_names
 from 后端.推荐数据源 import recommend_with_source
 
-CONFIG_PATH = ROOT / "后端" / "配置.yaml"
-OUTPUT_DIR = ROOT / "输出"
+CONFIG_PATH = Path(str(os.environ.get("CROP_CONFIG_PATH", ROOT / "后端" / "配置.yaml"))).resolve()
+OUTPUT_DIR = Path(str(os.environ.get("CROP_OUTPUT_DIR", ROOT / "输出"))).resolve()
 FRONTEND_DIR = ROOT / "前端"
 FRONTEND_PAGES_DIR = FRONTEND_DIR / "页面"
 CHART_DIR = OUTPUT_DIR / "项目图片"
