@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策助手 - AI 助手</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1 class="brand">农作物决策助手</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">智能推荐</a>
+        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link" href="/store">农资商城</a>
+        <a class="nav-link" href="/community">经验交流</a>
+        <a class="nav-link" href="/profile">我的</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+    </header>
+
+    <section class="assistant-layout">
+      <aside class="assistant-sidebar">
+        <div class="assistant-sidebar-head">
+          <h2>聊天任务</h2>
+          <button id="assistantNewBtn" class="btn btn-secondary" type="button">新建</button>
+        </div>
+        <div id="assistantSessions" class="session-list"></div>
+      </aside>
+
+      <section class="assistant-panel">
+        <div class="assistant-panel-head">
+          <div>
+            <p class="eyebrow">当前会话</p>
+            <h2 id="assistantTitle">AI 对话</h2>
+          </div>
+          <span id="assistantSourceHint" class="muted"></span>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-history" id="assistantHistory"></div>
+          <div class="chat-input-row">
+            <textarea id="assistantCustomQuestion" placeholder="输入你的问题，我们会尽快给出建议。"></textarea>
+            <div class="action-row">
+              <button id="assistantAskBtn" class="btn btn-primary" type="button">发送</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/前端/资源/脚本/分析页.js"></script>
+</body>
+</html>
+

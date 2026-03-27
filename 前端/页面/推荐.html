@@ -1,0 +1,360 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策助手 - 智能推荐</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/推荐页.css">
+</head>
+<body>
+  <main id="recommendApp" class="page">
+    <header class="topbar">
+      <h1 class="brand">农作物决策助手</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">智能推荐</a>
+        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link" href="/store">农资商城</a>
+        <a class="nav-link" href="/community">经验交流</a>
+        <a class="nav-link" href="/profile">我的</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+      <div class="user-box">
+        <span id="userName" class="user-pill">-</span>
+        <button id="logoutBtn" class="btn btn-danger" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="hero hero-center">
+      <h1>输入环境参数并生成候选作物</h1>
+      <p>输入 N/P/K、温湿度、pH 与降雨量后，系统会输出候选作物、收益与风险明细，并提供综合分拆解与对比视图。</p>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="card">
+        <h2>环境参数</h2>
+        <form id="envForm" class="grid" style="margin-top:12px;" @submit.prevent="runRecommend">
+          <div class="form-grid">
+            <label>氮 N
+              <input v-model.number="env.N" type="number" name="N" step="0.01" min="0" required>
+            </label>
+            <label>磷 P
+              <input v-model.number="env.P" type="number" name="P" step="0.01" min="0" required>
+            </label>
+            <label>钾 K
+              <input v-model.number="env.K" type="number" name="K" step="0.01" min="0" required>
+            </label>
+            <label>温度 (℃)
+              <input v-model.number="env.temperature" type="number" name="temperature" step="0.01" required>
+            </label>
+            <label>湿度 (%)
+              <input v-model.number="env.humidity" type="number" name="humidity" step="0.01" min="0" max="100" required>
+            </label>
+            <label>pH
+              <input v-model.number="env.ph" type="number" name="ph" step="0.01" min="0" max="14" required>
+            </label>
+            <label>降雨量 (mm)
+              <input v-model.number="env.rainfall" type="number" name="rainfall" step="0.01" min="0" required>
+            </label>
+          </div>
+
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button id="submitBtn" class="btn btn-primary" type="submit" :disabled="loading">{{ loading ? "计算中..." : "生成推荐" }}</button>
+            <button id="fillDefaultBtn" class="btn btn-secondary" type="button" :disabled="loading" @click="fillDefault">填充默认参数</button>
+          </div>
+          <div id="paramHealth" class="param-health-grid">
+            <article class="health-card">
+              <div class="label">NPK 平衡度</div>
+              <div id="healthNpk" class="value">{{ fmt(health.npkScore, 0) }} 分</div>
+              <div id="healthNpkHint" class="hint">平衡等级：{{ scoreToLevel(health.npkScore) }}</div>
+            </article>
+            <article class="health-card">
+              <div class="label">气候适配指数</div>
+              <div id="healthClimate" class="value">{{ fmt(health.climateScore, 0) }} 分</div>
+              <div id="healthClimateHint" class="hint">温湿雨综合：{{ scoreToLevel(health.climateScore) }}</div>
+            </article>
+            <article class="health-card">
+              <div class="label">土壤状态评分</div>
+              <div id="healthSoil" class="value">{{ fmt(health.soilScore, 0) }} 分</div>
+              <div id="healthSoilHint" class="hint">土壤状态：{{ scoreToLevel(health.soilScore) }}</div>
+            </article>
+            <article class="health-card">
+              <div class="label">综合输入完整性</div>
+              <div id="healthCompleteness" class="value">{{ health.completenessScore }}%</div>
+              <div id="healthCompletenessHint" class="hint">{{ health.completenessScore === 100 ? "参数完整，可直接计算" : "参数未填满，结果可能偏差" }}</div>
+            </article>
+          </div>
+          <p id="recommendStatus" class="status" :class="{ error: statusError, ok: statusText && !statusError }" :role="statusError ? 'alert' : 'status'">{{ statusText }}</p>
+        </form>
+      </article>
+
+      <article class="card">
+        <h2>推荐摘要</h2>
+        <div id="bestCard" class="kpi" style="margin-top:12px;">
+          <template v-if="result">
+            <h3>推荐结论</h3>
+            <p class="muted" style="margin:8px 0 0;">最优作物：<strong>{{ bestCrop }}</strong></p>
+            <p class="muted" style="margin:6px 0 0;">
+              <span :title="metricHelp('recommend_strength')">{{ metricLabel('recommend_strength') }}：<strong>{{ formatMetric('recommend_strength', bestStrength) }}</strong></span>
+              · 强度等级：{{ bestStrengthLevel }}
+            </p>
+            <p class="muted" style="margin:6px 0 0;">
+              <span :title="metricHelp('env_prob')">{{ metricLabel('env_prob') }}：<strong>{{ formatMetric('env_prob', bestProb) }}</strong></span>
+              · 置信等级：{{ confidenceText }}
+              · <span :title="metricHelp('risk')">{{ metricLabel('risk') }}：{{ formatMetric('risk', bestRisk) }}</span>
+            </p>
+            <p class="muted" style="margin:6px 0 0;">{{ metricLabel('runtime_ms') }}：{{ formatMetric('runtime_ms', runtimeMs) }} {{ cacheHit ? "(命中缓存)" : "" }}</p>
+          </template>
+          <div v-else class="label">等待计算...</div>
+        </div>
+        <div id="topkBox" class="pills">
+          <span v-for="item in topkItems" :key="`${item.rank}-${item.crop}`" class="pill">第{{ item.rank }}候选 · {{ cropName(item.crop) }} {{ formatMetric('env_prob', item.prob) }}</span>
+        </div>
+
+        <h3 style="margin-top:16px;">推荐强度可视化（增强版）</h3>
+        <div class="segmented score-viz-tabs" role="tablist" aria-label="推荐强度视图切换" style="margin-top:10px;">
+          <button type="button" :class="['seg-btn', { active: scoreView === 'summary' }]" @click="setScoreView('summary')">强度</button>
+          <button type="button" :class="['seg-btn', { active: scoreView === 'decomp' }]" @click="setScoreView('decomp')">拆解</button>
+          <button type="button" :class="['seg-btn', { active: scoreView === 'compare' }]" @click="setScoreView('compare')">对比</button>
+        </div>
+        <p class="muted score-viz-note">{{ scoreViewDescription }}</p>
+        <p class="muted score-viz-note">说明：推荐强度用于展示决策把握；内部排序分仅用于候选排序，不建议直接按绝对值理解。</p>
+
+        <div v-show="scoreView === 'summary'" id="scoreBars" class="bar-list" style="margin-top:10px;">
+          <div v-if="!scoreBars.length" class="muted">暂无可视化数据</div>
+          <article v-for="(row, idx) in scoreBars" :key="`${row.crop}-${idx}`" class="bar-item" :title="metricHelp('recommend_strength')">
+            <div class="bar-meta">
+              <strong>{{ cropName(row.crop) }}</strong>
+              <span>{{ metricLabel('recommend_strength') }} {{ formatMetric('recommend_strength', row.recommend_strength) }} · {{ metricLabel('profit') }} {{ formatMetric('profit', row.profit) }}</span>
+            </div>
+            <div class="track"><div class="fill" :style="{ width: `${row.width}%`, '--bar-delay': `${idx * 90}ms` }"></div></div>
+          </article>
+        </div>
+
+        <div v-show="scoreView === 'decomp'" class="score-viz-panel">
+          <div id="scoreDecompChart" class="visual-chart score-viz-chart"></div>
+        </div>
+        <div v-show="scoreView === 'compare'" class="score-viz-panel">
+          <div id="scoreCompareChart" class="visual-chart score-viz-chart"></div>
+        </div>
+        <p class="muted unit-note">{{ unitSystemNote }}</p>
+      </article>
+    </section>
+
+    <section class="grid grid-2" style="margin-top:16px;">
+      <article class="card decision-story-card">
+        <div class="decision-section-head">
+          <div>
+            <h2>推荐解释面板</h2>
+            <p class="muted decision-lead">
+              {{ selectedRow ? (selectedProfile.one_liner || "系统已为当前作物生成解释摘要。") : "生成推荐后，系统会解释为什么它排在前面。" }}
+            </p>
+            <p v-if="selectedRow" class="muted decision-sublead">
+              {{ selectedProfile.fit_summary || "环境适配信息待补充。" }}
+              ·
+              {{ selectedProfile.market_signal?.summary || "行情方向信息待补充。" }}
+            </p>
+          </div>
+          <div class="decision-pill-row" v-if="selectedRow">
+            <span class="signal-pill signal-pill-strong">{{ cropName(selectedRow.crop) }}</span>
+            <span class="signal-pill">{{ selectedProfile.style || "综合候选" }}</span>
+            <span class="signal-pill">{{ metricLabel('recommend_strength') }} {{ formatMetric('recommend_strength', selectedRow.recommend_strength) }}</span>
+          </div>
+        </div>
+
+        <template v-if="selectedRow">
+          <div class="decision-mini-grid">
+            <article v-for="item in decisionInsightCards" :key="item.label" class="decision-mini-card">
+              <div class="label">{{ item.label }}</div>
+              <div class="value">{{ item.value }}</div>
+              <div class="hint">{{ item.hint }}</div>
+            </article>
+          </div>
+
+          <div v-if="selectedComparisonMarks.length || selectedRiskFocus.length" class="decision-pill-row decision-pill-row-wide">
+            <span v-for="item in selectedComparisonMarks" :key="`mark-${item}`" class="signal-pill signal-pill-strong">{{ item }}</span>
+            <span v-for="item in selectedRiskFocus" :key="`risk-${item}`" class="signal-pill signal-pill-warn">关注：{{ item }}</span>
+          </div>
+
+          <div class="decision-copy-grid">
+            <section class="decision-copy-block">
+              <h3>为什么推荐它</h3>
+              <ul class="decision-list">
+                <li v-for="item in selectedReasons" :key="`reason-${item}`">{{ item }}</li>
+              </ul>
+            </section>
+            <section class="decision-copy-block">
+              <h3>下一步建议</h3>
+              <ul class="decision-list">
+                <li v-for="item in selectedNextSteps" :key="`step-${item}`">{{ item }}</li>
+              </ul>
+            </section>
+          </div>
+        </template>
+        <div v-else class="decision-placeholder">请先生成推荐，并在结果表格中选中一个作物。</div>
+      </article>
+
+      <article class="card decision-risk-card">
+        <div class="decision-section-head">
+          <div>
+            <h2>风险与不确定性</h2>
+            <p class="muted decision-lead">把当前选中作物拆成风险来源和落地把握，避免只看综合分。</p>
+          </div>
+        </div>
+
+        <template v-if="selectedRow">
+          <div class="decision-mini-grid decision-mini-grid-tight">
+            <article v-for="item in decisionSignalCards" :key="item.label" class="decision-mini-card decision-mini-card-soft">
+              <div class="label">{{ item.label }}</div>
+              <div class="value">{{ item.value }}</div>
+              <div class="hint">{{ item.hint }}</div>
+            </article>
+          </div>
+
+          <div class="decision-chart-stack">
+            <section class="chart-panel decision-chart-panel">
+              <h3>风险拆解</h3>
+              <div id="decisionRiskChart" class="visual-chart visual-chart-mini decision-chart"></div>
+            </section>
+            <section class="chart-panel decision-chart-panel">
+              <h3>落地把握与不确定性</h3>
+              <div id="decisionConfidenceChart" class="visual-chart visual-chart-mini decision-chart"></div>
+            </section>
+          </div>
+        </template>
+        <div v-else class="decision-placeholder">暂无风险与不确定性数据。</div>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>推荐结果明细</h2>
+      <div class="table-wrap" style="margin-top:12px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="sortable" :class="{ active: sort.key === 'crop' }" data-sort-key="crop" @click="setSort('crop')">作物<span class="sort-indicator">{{ sortIndicator("crop") }}</span></th>
+              <th class="sortable" :title="metricSource('env_prob')" :class="{ active: sort.key === 'env_prob' }" data-sort-key="env_prob" @click="setSort('env_prob')">{{ metricLabel('env_prob') }}<span class="sort-indicator">{{ sortIndicator("env_prob") }}</span></th>
+              <th class="sortable" :title="metricSource('price_pred')" :class="{ active: sort.key === 'price_pred' }" data-sort-key="price_pred" @click="setSort('price_pred')">{{ metricLabel('price_pred') }}<span class="sort-indicator">{{ sortIndicator("price_pred") }}</span></th>
+              <th class="sortable" :title="metricSource('cost_pred')" :class="{ active: sort.key === 'cost_pred' }" data-sort-key="cost_pred" @click="setSort('cost_pred')">{{ metricLabel('cost_pred') }}<span class="sort-indicator">{{ sortIndicator("cost_pred") }}</span></th>
+              <th class="sortable" :title="metricSource('yield')" :class="{ active: sort.key === 'yield' }" data-sort-key="yield" @click="setSort('yield')">{{ metricLabel('yield') }}<span class="sort-indicator">{{ sortIndicator("yield") }}</span></th>
+              <th class="sortable" :title="metricSource('profit')" :class="{ active: sort.key === 'profit' }" data-sort-key="profit" @click="setSort('profit')">{{ metricLabel('profit') }}<span class="sort-indicator">{{ sortIndicator("profit") }}</span></th>
+              <th class="sortable" :title="metricSource('risk')" :class="{ active: sort.key === 'risk' }" data-sort-key="risk" @click="setSort('risk')">{{ metricLabel('risk') }}<span class="sort-indicator">{{ sortIndicator("risk") }}</span></th>
+              <th class="sortable" :title="metricSource('recommend_strength')" :class="{ active: sort.key === 'recommend_strength' }" data-sort-key="recommend_strength" @click="setSort('recommend_strength')">{{ metricLabel('recommend_strength') }}<span class="sort-indicator">{{ sortIndicator("recommend_strength") }}</span></th>
+              <th class="sortable" :title="metricSource('prob_best')" :class="{ active: sort.key === 'prob_best' }" data-sort-key="prob_best" @click="setSort('prob_best')">{{ metricLabel('prob_best') }}<span class="sort-indicator">{{ sortIndicator("prob_best") }}</span></th>
+            </tr>
+          </thead>
+          <tbody id="resultBody">
+            <tr v-if="!sortedRows.length"><td colspan="9">暂无结果</td></tr>
+            <tr
+              v-for="(row, idx) in sortedRows"
+              :key="`${row.crop}-${idx}`"
+              :class="{ 'recommend-row-active': selectedCrop === row.crop }"
+              @click="selectCrop(row)"
+            >
+              <td>{{ cropName(row.crop) }}</td>
+              <td>{{ formatMetric('env_prob', row.env_prob) }}</td>
+              <td>{{ formatMetric('price_pred', row.price_pred) }}</td>
+              <td>{{ formatMetric('cost_pred', row.cost_pred) }}</td>
+              <td>{{ formatMetric('yield', row.yield) }}</td>
+              <td>{{ formatMetric('profit', row.profit) }}</td>
+              <td>{{ formatMetric('risk', row.risk) }}</td>
+              <td>{{ formatMetric('recommend_strength', row.recommend_strength) }}</td>
+              <td>{{ formatMetric('prob_best', row.prob_best) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>作物可视化洞察</h2>
+      <p class="muted" style="margin-top:8px;">推荐完成后，可点击表格行或下方作物标签查看该作物的历史趋势与预测图。</p>
+      <div class="pills" style="margin-top:10px;">
+        <button
+          v-for="row in rows"
+          :key="`visual-${row.crop}`"
+          type="button"
+          :class="['pill', 'pill-btn', { active: selectedCrop === row.crop }]"
+          @click="selectCrop(row)"
+        >
+          {{ cropName(row.crop) }}
+        </button>
+      </div>
+
+      <p class="status" :class="{ error: visualError }" style="margin-top:10px;">
+        {{ visualError ? visualErrorText : (loadingVisual ? "正在加载作物可视化数据..." : visualStatusText) }}
+      </p>
+
+      <div class="grid grid-4" style="margin-top:10px;">
+        <article class="kpi">
+          <div class="label">{{ metricLabel('profit') }}</div>
+          <div class="value">{{ formatMetric('profit', visualPrediction.profit_pred) }}</div>
+          <div class="hint">{{ metricLabel('margin_pct') }}：{{ formatMetric('margin_pct', visualPrediction.margin_pct) }}</div>
+        </article>
+        <article class="kpi">
+          <div class="label">近期价格波动（90天）</div>
+          <div class="value">{{ formatMetric('volatility_90d_pct', visualPriceStats.volatility_90d_pct) }}</div>
+          <div class="hint">{{ metricLabel('yoy_change_pct') }}：{{ formatMetric('yoy_change_pct', visualPriceStats.yoy_change_pct) }}</div>
+        </article>
+        <article class="kpi">
+          <div class="label">产量长期增速 {{ modelTerm('CAGR') }}</div>
+          <div class="value">{{ formatMetric('cagr_pct', visualYieldStats.cagr_pct) }}</div>
+          <div class="hint">历史均值（吨/公顷）：{{ fmt(visualYieldStats.mean, 2) }}</div>
+        </article>
+        <article class="kpi">
+          <div class="label">成本长期增速 {{ modelTerm('CAGR') }}</div>
+          <div class="value">{{ formatMetric('cagr_pct', visualCostStats.cagr_pct) }}</div>
+          <div class="hint">历史均值（₹/公顷）：{{ fmt(visualCostStats.mean, 2) }}</div>
+        </article>
+      </div>
+
+      <div class="segmented visual-tabs" role="tablist" aria-label="作物可视化图切换" style="margin-top:12px;">
+        <button type="button" :class="['seg-btn', { active: visualView === 'price' }]" @click="setVisualView('price')">价格历史、均线与预测</button>
+        <button type="button" :class="['seg-btn', { active: visualView === 'yield' }]" @click="setVisualView('yield')">产量历史趋势与预测</button>
+        <button type="button" :class="['seg-btn', { active: visualView === 'cost' }]" @click="setVisualView('cost')">成本历史趋势与预测</button>
+        <button type="button" :class="['seg-btn', { active: visualView === 'profile' }]" @click="setVisualView('profile')">推荐画像雷达</button>
+      </div>
+      <article class="chart-panel visual-single-panel">
+        <h3>{{ visualViewTitle }}</h3>
+        <div v-show="visualView === 'price'">
+          <p class="muted">日线明细视图（保留日频历史、30/90日均线与日频预测）</p>
+          <div class="seasonal-toggle-row" v-if="priceDailyLegendNames.length">
+            <button
+              v-for="name in priceDailyLegendNames"
+              :key="`price-daily-${name}`"
+              type="button"
+              :class="['seasonal-toggle-btn', { off: isPriceDailySeriesHidden(name) }]"
+              @click="togglePriceDailySeries(name)"
+            >
+              {{ name }}
+            </button>
+          </div>
+          <div id="priceDailyVisualChart" class="visual-chart"></div>
+          <p class="muted" style="margin-top:10px;">预测时间段细化：聚焦预测起点附近的近段历史、预测中位线与区间带。</p>
+          <div id="priceForecastDetailChart" class="visual-chart visual-chart-mini"></div>
+          <p class="muted" style="margin-top:10px;">历年同期对比：展示预测时间段在历年的同窗口历史价格，用于判断季节性位置。可点击左上图例项切换曲线显隐。</p>
+          <div class="seasonal-toggle-row" v-if="priceWindowLegendNames.length">
+            <button
+              v-for="name in priceWindowLegendNames"
+              :key="`seasonal-${name}`"
+              type="button"
+              :class="['seasonal-toggle-btn', { off: isPriceWindowSeriesHidden(name) }]"
+              @click="togglePriceWindowSeries(name)"
+            >
+              {{ name }}
+            </button>
+          </div>
+          <div id="priceWindowSeasonalChart" class="visual-chart visual-chart-mini"></div>
+        </div>
+        <div v-show="visualView === 'yield'" id="yieldVisualChart" class="visual-chart"></div>
+        <div v-show="visualView === 'cost'" id="costVisualChart" class="visual-chart"></div>
+        <div v-show="visualView === 'profile'" id="profileVisualChart" class="visual-chart"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="/assets/前端/资源/依赖/视图框架生产版.js"></script>
+  <script src="/assets/前端/资源/依赖/图表库压缩版.js"></script>
+  <script type="module" src="/assets/前端/资源/脚本/推荐页.js"></script>
+</body>
+</html>
+

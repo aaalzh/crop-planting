@@ -1,0 +1,888 @@
+crop_name,year_start,n_states,n_rows_cost,sum_sample_weight
+Apple,2010,4,4,316.0
+Apple,2011,4,4,301.0
+Apple,2012,4,4,292.0
+Apple,2013,4,4,261.0
+Apple,2014,5,5,395.0
+Apple,2015,5,5,396.0
+Apple,2016,5,5,335.0
+Apple,2017,5,5,374.0
+Apple,2018,5,5,365.0
+Apple,2019,5,5,345.0
+Apple,2020,5,5,396.0
+Apple,2021,5,5,369.0
+Apple,2022,5,5,369.0
+Apple,2023,5,5,369.0
+Apple,2024,5,5,369.0
+Apple,2025,5,5,369.0
+Bajra,1996,6,6,767.0
+Bajra,1997,5,5,703.0
+Bajra,1998,5,5,450.0
+Bajra,1999,5,5,724.0
+Bajra,2000,5,5,802.0
+Bajra,2001,5,5,845.0
+Bajra,2002,5,5,703.0
+Bajra,2003,5,5,923.0
+Bajra,2004,5,5,830.0
+Bajra,2005,6,6,747.0
+Bajra,2006,6,6,759.0
+Bajra,2007,6,6,823.0
+Bajra,2008,6,6,868.0
+Bajra,2009,6,6,744.0
+Bajra,2010,6,6,902.0
+Bajra,2011,7,7,779.0
+Bajra,2012,7,7,676.0
+Bajra,2013,7,7,692.0
+Bajra,2014,5,5,634.0
+Bajra,2015,5,5,621.3399999999999
+Bajra,2016,5,5,659.0
+Bajra,2017,5,5,660.0
+Bajra,2018,5,5,616.0
+Bajra,2019,5,5,651.0
+Bajra,2020,5,5,697.0
+Bajra,2021,5,5,600.0
+Banana,2010,4,4,153.0
+Banana,2011,4,4,160.0
+Banana,2012,4,4,114.0
+Banana,2013,4,4,145.0
+Banana,2014,3,3,143.0
+Banana,2015,3,3,211.0
+Banana,2016,3,3,135.0
+Banana,2017,5,5,172.0
+Banana,2018,5,5,195.0
+Banana,2019,5,5,164.0
+Banana,2020,5,5,199.0
+Banana,2021,5,5,243.0
+Banana,2022,5,5,243.0
+Banana,2023,5,5,243.0
+Banana,2024,5,5,243.0
+Banana,2025,5,5,243.0
+Barley,1996,2,2,175.0
+Barley,1998,2,2,211.0
+Barley,1999,2,2,151.0
+Barley,2000,2,2,169.0
+Barley,2001,2,2,161.0
+Barley,2002,2,2,213.0
+Barley,2003,3,3,205.0
+Barley,2004,3,3,187.0
+Barley,2005,2,2,161.0
+Barley,2006,2,2,163.0
+Barley,2007,2,2,161.0
+Barley,2008,2,2,168.0
+Barley,2009,2,2,137.0
+Barley,2010,2,2,154.0
+Barley,2011,2,2,138.0
+Barley,2012,2,2,152.0
+Barley,2013,2,2,130.0
+Barley,2014,2,2,149.0
+Barley,2015,2,2,104.0
+Barley,2016,2,2,101.0
+Barley,2017,3,3,180.0
+Barley,2018,4,4,176.12
+Barley,2019,4,4,210.0
+Barley,2020,3,3,204.0
+Barley,2021,3,3,192.0
+Coconut,2010,5,5,434.0
+Coconut,2011,5,5,468.0
+Coconut,2012,5,5,437.0
+Coconut,2013,5,5,436.0
+Coconut,2014,5,5,387.0
+Coconut,2015,5,5,397.0
+Coconut,2016,5,5,416.0
+Coconut,2017,5,5,583.0
+Coconut,2018,5,5,549.0
+Coconut,2019,5,5,570.0
+Coconut,2020,5,5,593.0
+Coconut,2021,5,5,560.0
+Coconut,2022,5,5,560.0
+Coconut,2023,5,5,560.0
+Coconut,2024,5,5,560.0
+Coconut,2025,5,5,560.0
+Coffee,2010,5,5,434.0
+Coffee,2011,5,5,468.0
+Coffee,2012,5,5,437.0
+Coffee,2013,5,5,436.0
+Coffee,2014,5,5,387.0
+Coffee,2015,5,5,397.0
+Coffee,2016,5,5,416.0
+Coffee,2017,5,5,583.0
+Coffee,2018,5,5,549.0
+Coffee,2019,5,5,570.0
+Coffee,2020,5,5,593.0
+Coffee,2021,5,5,560.0
+Coffee,2022,5,5,560.0
+Coffee,2023,5,5,560.0
+Coffee,2024,5,5,560.0
+Coffee,2025,5,5,560.0
+Cotton,1996,8,8,1089.0
+Cotton,1997,7,7,681.0
+Cotton,1998,5,5,569.0
+Cotton,1999,9,9,891.0
+Cotton,2000,9,9,897.0
+Cotton,2001,9,9,943.0
+Cotton,2002,9,9,843.0
+Cotton,2003,9,9,906.0
+Cotton,2004,9,9,1042.0
+Cotton,2005,9,9,1011.0
+Cotton,2006,9,9,973.0
+Cotton,2007,9,9,1005.0
+Cotton,2008,10,10,1048.0
+Cotton,2009,10,10,1114.0
+Cotton,2010,10,10,1115.0
+Cotton,2011,10,10,1348.0
+Cotton,2012,10,10,1240.0
+Cotton,2013,10,10,1195.0
+Cotton,2014,10,10,1313.0
+Cotton,2015,10,10,1158.0
+Cotton,2016,10,10,1052.0
+Cotton,2017,10,10,1159.0
+Cotton,2018,11,11,1099.0
+Cotton,2019,11,11,1112.0
+Cotton,2020,11,11,1053.0
+Cotton,2021,11,11,962.0
+Cotton,2022,5,5,688.0
+Cotton,2023,5,5,688.0
+Cotton,2024,5,5,688.0
+Cotton,2025,5,5,688.0
+Gram,1996,5,5,606.0
+Gram,1997,5,5,619.0
+Gram,1998,5,5,646.0
+Gram,1999,3,3,469.0
+Gram,2000,4,4,489.0
+Gram,2001,5,5,599.0
+Gram,2002,8,8,587.0
+Gram,2003,9,9,646.0
+Gram,2004,9,9,636.0
+Gram,2005,9,9,752.0
+Gram,2006,10,10,834.0
+Gram,2007,10,10,749.0
+Gram,2008,10,10,777.0
+Gram,2009,10,10,748.0
+Gram,2010,10,10,753.0
+Gram,2011,9,9,653.0
+Gram,2012,9,9,781.23
+Gram,2013,9,9,722.0
+Gram,2014,10,10,674.0
+Gram,2015,10,10,651.0
+Gram,2016,10,10,685.0
+Gram,2017,13,13,855.0
+Gram,2018,14,14,707.0
+Gram,2019,12,12,766.0
+Gram,2020,14,14,820.0
+Gram,2021,12,12,823.0
+Gram,2022,5,5,661.0
+Gram,2023,5,5,661.0
+Gram,2024,5,5,661.0
+Gram,2025,5,5,661.0
+Grapes,2010,4,4,153.0
+Grapes,2011,4,4,160.0
+Grapes,2012,4,4,114.0
+Grapes,2013,4,4,145.0
+Grapes,2014,3,3,143.0
+Grapes,2015,3,3,211.0
+Grapes,2016,3,3,135.0
+Grapes,2017,5,5,172.0
+Grapes,2018,5,5,195.0
+Grapes,2019,5,5,164.0
+Grapes,2020,5,5,199.0
+Grapes,2021,5,5,243.0
+Grapes,2022,5,5,243.0
+Grapes,2023,5,5,243.0
+Grapes,2024,5,5,243.0
+Grapes,2025,5,5,243.0
+Groundnut,1996,5,5,702.0
+Groundnut,1997,6,6,781.0
+Groundnut,1998,6,6,749.0
+Groundnut,1999,5,6,754.0
+Groundnut,2000,5,6,732.0
+Groundnut,2001,5,6,725.0
+Groundnut,2002,5,6,736.0
+Groundnut,2003,5,6,815.0
+Groundnut,2004,5,5,691.0
+Groundnut,2005,5,5,594.0
+Groundnut,2006,5,5,571.0
+Groundnut,2007,5,5,613.0
+Groundnut,2008,6,6,549.0
+Groundnut,2009,6,6,488.0
+Groundnut,2010,6,6,471.0
+Groundnut,2011,6,6,517.0
+Groundnut,2012,6,6,478.0
+Groundnut,2013,6,6,479.0
+Groundnut,2014,7,7,461.0
+Groundnut,2015,7,7,471.0
+Groundnut,2016,7,7,481.0
+Groundnut,2017,9,9,710.0
+Groundnut,2018,10,10,692.0
+Groundnut,2019,10,10,705.0
+Groundnut,2020,11,11,771.0
+Groundnut,2021,11,11,724.0
+Jowar,1996,3,3,195.0
+Jowar,1997,5,5,759.0
+Jowar,1998,4,4,684.0
+Jowar,1999,6,6,730.0
+Jowar,2000,6,6,662.0
+Jowar,2001,6,6,706.0
+Jowar,2002,6,6,649.0
+Jowar,2003,6,6,607.0
+Jowar,2004,6,6,621.0
+Jowar,2005,6,6,506.0
+Jowar,2006,6,6,493.0
+Jowar,2007,6,6,497.0
+Jowar,2008,6,6,430.0
+Jowar,2009,6,6,402.0
+Jowar,2010,6,6,370.0
+Jowar,2011,5,5,291.0
+Jowar,2012,5,5,368.0
+Jowar,2013,5,5,292.0
+Jowar,2014,6,6,352.0
+Jowar,2015,6,6,326.0
+Jowar,2016,6,6,265.0
+Jowar,2017,6,6,308.0
+Jowar,2018,7,7,231.0
+Jowar,2019,7,7,265.0
+Jowar,2020,5,5,233.0
+Jowar,2021,6,6,178.0
+Jute,1996,3,3,352.0
+Jute,1997,4,4,346.0
+Jute,1998,4,4,348.0
+Jute,1999,3,3,377.0
+Jute,2000,3,3,355.0
+Jute,2001,3,3,350.0
+Jute,2002,3,3,314.0
+Jute,2003,3,3,328.0
+Jute,2004,3,3,319.0
+Jute,2005,3,3,310.0
+Jute,2006,3,3,321.0
+Jute,2007,3,3,301.0
+Jute,2008,3,3,321.0
+Jute,2009,3,3,304.0
+Jute,2010,3,3,297.0
+Jute,2011,3,3,308.0
+Jute,2012,3,3,268.0
+Jute,2013,3,3,245.0
+Jute,2014,4,4,189.0
+Jute,2015,4,4,171.0
+Jute,2016,4,4,154.0
+Jute,2017,3,3,198.0
+Jute,2018,3,3,258.0
+Jute,2019,3,3,247.0
+Jute,2020,3,3,181.0
+Jute,2021,3,3,192.0
+Jute,2022,3,3,192.0
+Jute,2023,3,3,192.0
+Jute,2024,3,3,192.0
+Jute,2025,3,3,192.0
+Kidneybeans,2010,5,5,630.0
+Kidneybeans,2011,5,5,571.0
+Kidneybeans,2012,5,5,677.23
+Kidneybeans,2013,5,5,629.0
+Kidneybeans,2014,5,5,548.0
+Kidneybeans,2015,5,5,518.0
+Kidneybeans,2016,5,5,562.0
+Kidneybeans,2017,5,5,647.0
+Kidneybeans,2018,5,5,542.0
+Kidneybeans,2019,5,5,587.0
+Kidneybeans,2020,5,5,644.0
+Kidneybeans,2021,5,5,661.0
+Kidneybeans,2022,5,5,661.0
+Kidneybeans,2023,5,5,661.0
+Kidneybeans,2024,5,5,661.0
+Kidneybeans,2025,5,5,661.0
+Lentil,1999,3,3,304.0
+Lentil,2000,3,3,334.0
+Lentil,2001,3,3,334.0
+Lentil,2002,5,5,329.0
+Lentil,2003,4,4,311.0
+Lentil,2010,5,5,362.0
+Lentil,2011,4,4,231.0
+Lentil,2012,4,4,242.0
+Lentil,2013,4,4,222.0
+Lentil,2014,4,4,206.0
+Lentil,2015,4,4,226.0
+Lentil,2016,4,4,240.0
+Lentil,2017,5,5,214.0
+Lentil,2018,6,6,219.0
+Lentil,2019,4,4,177.0
+Lentil,2020,4,4,217.0
+Lentil,2021,4,4,201.0
+Lentil,2022,4,4,201.0
+Lentil,2023,4,4,201.0
+Lentil,2024,4,4,201.0
+Lentil,2025,4,4,201.0
+Maize,1996,6,6,788.0
+Maize,1997,6,6,754.0
+Maize,1998,7,7,808.0
+Maize,1999,7,7,725.0
+Maize,2000,7,7,760.0
+Maize,2001,7,7,756.0
+Maize,2002,9,9,842.0
+Maize,2003,10,10,908.0
+Maize,2004,10,10,926.0
+Maize,2005,12,12,1027.0
+Maize,2006,12,12,1064.0
+Maize,2007,12,12,1042.0
+Maize,2008,10,10,989.0
+Maize,2009,10,10,962.0
+Maize,2010,10,10,939.0
+Maize,2011,10,10,982.0
+Maize,2012,10,10,953.0
+Maize,2013,10,10,918.0
+Maize,2014,13,13,1015.0
+Maize,2015,13,13,932.0
+Maize,2016,13,13,984.0
+Maize,2017,14,14,1082.28
+Maize,2018,15,15,993.0
+Maize,2019,15,15,978.0
+Maize,2020,13,13,1004.0
+Maize,2021,14,14,1029.0
+Maize,2022,5,5,635.0
+Maize,2023,5,5,635.0
+Maize,2024,5,5,635.0
+Maize,2025,5,5,635.0
+Mango,2010,4,4,153.0
+Mango,2011,4,4,160.0
+Mango,2012,4,4,114.0
+Mango,2013,4,4,145.0
+Mango,2014,3,3,143.0
+Mango,2015,3,3,211.0
+Mango,2016,3,3,135.0
+Mango,2017,5,5,172.0
+Mango,2018,5,5,195.0
+Mango,2019,5,5,164.0
+Mango,2020,5,5,199.0
+Mango,2021,5,5,243.0
+Mango,2022,5,5,243.0
+Mango,2023,5,5,243.0
+Mango,2024,5,5,243.0
+Mango,2025,5,5,243.0
+Masur,2004,5,5,351.0
+Masur,2005,4,4,314.0
+Masur,2006,4,4,263.0
+Masur,2007,5,5,254.0
+Masur,2008,5,5,334.0
+Masur,2009,5,5,343.0
+Masur,2010,5,5,362.0
+Masur,2011,4,4,231.0
+Masur,2012,4,4,242.0
+Masur,2013,4,4,222.0
+Masur,2014,4,4,206.0
+Masur,2015,4,4,226.0
+Masur,2016,4,4,240.0
+Masur,2017,5,5,214.0
+Masur,2018,6,6,219.0
+Masur,2019,4,4,177.0
+Masur,2020,4,4,217.0
+Masur,2021,4,4,201.0
+Moong,1996,3,3,395.0
+Moong,1997,3,3,393.0
+Moong,1998,3,3,416.0
+Moong,1999,4,4,429.0
+Moong,2000,4,4,431.0
+Moong,2001,4,4,499.0
+Moong,2002,4,4,353.0
+Moong,2003,4,4,495.0
+Moong,2004,4,4,422.0
+Moong,2005,5,5,468.0
+Moong,2006,5,5,495.0
+Moong,2007,5,5,571.0
+Moong,2008,5,5,415.0
+Moong,2009,5,5,422.0
+Moong,2010,5,5,524.0
+Moong,2011,6,6,453.0
+Moong,2012,6,6,432.0
+Moong,2013,6,6,452.0
+Moong,2014,6,6,501.0
+Moong,2015,6,6,531.0
+Moong,2016,6,6,658.0
+Moong,2017,11,11,589.0
+Moong,2018,12,12,589.0
+Moong,2019,12,12,550.0
+Moong,2020,11,11,650.0
+Moong,2021,11,11,576.0
+Moong,2022,5,5,477.0
+Moong,2023,5,5,477.0
+Moong,2024,5,5,477.0
+Moong,2025,5,5,477.0
+Mothbeans,2010,5,5,524.0
+Mothbeans,2011,5,5,424.0
+Mothbeans,2012,5,5,412.0
+Mothbeans,2013,5,5,424.0
+Mothbeans,2014,5,5,461.0
+Mothbeans,2015,5,5,501.0
+Mothbeans,2016,5,5,598.0
+Mothbeans,2017,5,5,508.0
+Mothbeans,2018,5,5,516.0
+Mothbeans,2019,5,5,460.0
+Mothbeans,2020,5,5,548.0
+Mothbeans,2021,5,5,477.0
+Mothbeans,2022,5,5,477.0
+Mothbeans,2023,5,5,477.0
+Mothbeans,2024,5,5,477.0
+Mothbeans,2025,5,5,477.0
+Muskmelon,2010,4,4,153.0
+Muskmelon,2011,4,4,160.0
+Muskmelon,2012,4,4,114.0
+Muskmelon,2013,4,4,145.0
+Muskmelon,2014,3,3,143.0
+Muskmelon,2015,3,3,211.0
+Muskmelon,2016,3,3,135.0
+Muskmelon,2017,5,5,172.0
+Muskmelon,2018,5,5,195.0
+Muskmelon,2019,5,5,164.0
+Muskmelon,2020,5,5,199.0
+Muskmelon,2021,5,5,243.0
+Muskmelon,2022,5,5,243.0
+Muskmelon,2023,5,5,243.0
+Muskmelon,2024,5,5,243.0
+Muskmelon,2025,5,5,243.0
+Nigerseed,1996,1,1,32.0
+Nigerseed,1997,1,1,30.0
+Nigerseed,1998,1,1,30.0
+Nigerseed,1999,1,1,7.0
+Nigerseed,2000,1,1,9.0
+Nigerseed,2001,1,1,8.0
+Nigerseed,2002,1,1,6.0
+Nigerseed,2003,2,2,7.0
+Nigerseed,2004,1,1,4.0
+Nigerseed,2005,2,2,11.0
+Nigerseed,2006,1,1,2.0
+Nigerseed,2007,2,2,9.0
+Nigerseed,2008,1,1,16.0
+Nigerseed,2009,1,1,16.0
+Nigerseed,2010,1,1,16.0
+Nigerseed,2011,1,1,32.0
+Nigerseed,2012,1,1,31.0
+Nigerseed,2013,1,1,32.0
+Nigerseed,2014,2,2,12.0
+Nigerseed,2015,3,3,15.0
+Nigerseed,2016,2,2,13.0
+Nigerseed,2017,1,1,32.0
+Nigerseed,2018,1,1,35.0
+Nigerseed,2019,1,1,32.0
+Nigerseed,2020,1,1,25.0
+Nigerseed,2021,1,1,25.0
+Onion,1996,1,1,35.0
+Onion,1997,1,1,26.0
+Onion,1998,1,1,36.0
+Onion,1999,2,2,45.0
+Onion,2000,2,2,42.0
+Onion,2001,2,2,42.0
+Onion,2002,2,2,53.0
+Onion,2003,2,2,62.0
+Onion,2004,2,2,78.0
+Onion,2005,3,3,80.0
+Onion,2006,3,3,68.0
+Onion,2007,3,3,95.0
+Onion,2008,4,4,120.0
+Onion,2009,4,4,146.0
+Onion,2010,4,4,153.0
+Onion,2011,4,4,160.0
+Onion,2012,4,4,114.0
+Onion,2013,4,4,145.0
+Onion,2014,3,3,143.0
+Onion,2015,3,3,211.0
+Onion,2016,3,3,135.0
+Onion,2017,6,6,174.0
+Onion,2018,6,6,197.0
+Onion,2019,6,6,166.0
+Onion,2020,7,7,221.0
+Onion,2021,7,7,260.0
+Orange,2010,4,4,316.0
+Orange,2011,4,4,301.0
+Orange,2012,4,4,292.0
+Orange,2013,4,4,261.0
+Orange,2014,5,5,395.0
+Orange,2015,5,5,396.0
+Orange,2016,5,5,335.0
+Orange,2017,5,5,374.0
+Orange,2018,5,5,365.0
+Orange,2019,5,5,345.0
+Orange,2020,5,5,396.0
+Orange,2021,5,5,369.0
+Orange,2022,5,5,369.0
+Orange,2023,5,5,369.0
+Orange,2024,5,5,369.0
+Orange,2025,5,5,369.0
+Paddy,1996,9,9,3495.0
+Paddy,1997,10,10,3843.0
+Paddy,1998,10,10,3773.0
+Paddy,1999,12,12,4535.0
+Paddy,2000,12,12,4461.0
+Paddy,2001,12,12,4390.0
+Paddy,2002,15,15,4176.0
+Paddy,2003,15,15,4273.0
+Paddy,2004,15,15,4283.0
+Paddy,2005,18,18,4671.0
+Paddy,2006,18,18,4495.0
+Paddy,2007,18,18,4380.0
+Paddy,2008,18,18,4670.0
+Paddy,2009,18,18,4526.0
+Paddy,2010,18,18,4568.0
+Paddy,2011,18,18,4639.0
+Paddy,2012,18,18,4527.0
+Paddy,2013,18,18,4540.0
+Paddy,2014,18,18,4716.0
+Paddy,2015,18,18,4645.0
+Paddy,2016,18,18,4572.0
+Paddy,2017,18,18,4607.0
+Paddy,2018,19,19,4517.0
+Paddy,2019,19,19,4495.0
+Paddy,2020,18,18,4660.0
+Paddy,2021,18,18,4448.0
+Paddy,2022,5,5,2224.0
+Paddy,2023,5,5,2224.0
+Paddy,2024,5,5,2224.0
+Paddy,2025,5,5,2224.0
+Papaya,2010,4,4,153.0
+Papaya,2011,4,4,160.0
+Papaya,2012,4,4,114.0
+Papaya,2013,4,4,145.0
+Papaya,2014,3,3,143.0
+Papaya,2015,3,3,211.0
+Papaya,2016,3,3,135.0
+Papaya,2017,5,5,172.0
+Papaya,2018,5,5,195.0
+Papaya,2019,5,5,164.0
+Papaya,2020,5,5,199.0
+Papaya,2021,5,5,243.0
+Papaya,2022,5,5,243.0
+Papaya,2023,5,5,243.0
+Papaya,2024,5,5,243.0
+Papaya,2025,5,5,243.0
+Peas (Vegetable) (Green),2005,2,2,173.0
+Peas (Vegetable) (Green),2006,2,2,154.0
+Peas (Vegetable) (Green),2007,2,2,127.0
+Peas (Vegetable) (Green),2008,2,2,85.0
+Peas (Vegetable) (Green),2009,2,2,85.0
+Peas (Vegetable) (Green),2010,2,2,113.0
+Peas (Vegetable) (Green),2011,1,1,69.0
+Peas (Vegetable) (Green),2012,1,1,75.0
+Peas (Vegetable) (Green),2013,1,1,65.0
+Pomegranate,2010,4,4,153.0
+Pomegranate,2011,4,4,160.0
+Pomegranate,2012,4,4,114.0
+Pomegranate,2013,4,4,145.0
+Pomegranate,2014,3,3,143.0
+Pomegranate,2015,3,3,211.0
+Pomegranate,2016,3,3,135.0
+Pomegranate,2017,5,5,172.0
+Pomegranate,2018,5,5,195.0
+Pomegranate,2019,5,5,164.0
+Pomegranate,2020,5,5,199.0
+Pomegranate,2021,5,5,243.0
+Pomegranate,2022,5,5,243.0
+Pomegranate,2023,5,5,243.0
+Pomegranate,2024,5,5,243.0
+Pomegranate,2025,5,5,243.0
+Potato,1996,2,2,132.0
+Potato,1997,2,2,137.0
+Potato,1998,4,4,366.0
+Potato,1999,4,4,407.0
+Potato,2000,4,4,376.0
+Potato,2001,4,4,356.0
+Potato,2002,5,5,488.0
+Potato,2003,5,5,474.0
+Potato,2004,5,5,432.0
+Potato,2005,6,6,416.0
+Potato,2006,7,7,435.0
+Potato,2007,7,7,412.0
+Potato,2008,4,4,322.0
+Potato,2009,4,4,339.0
+Potato,2010,4,4,316.0
+Potato,2011,4,4,301.0
+Potato,2012,4,4,292.0
+Potato,2013,4,4,261.0
+Potato,2014,5,5,395.0
+Potato,2015,5,5,396.0
+Potato,2016,5,5,335.0
+Potato,2017,9,9,418.0
+Potato,2018,9,9,411.0
+Potato,2019,9,9,379.0
+Potato,2020,7,7,436.0
+Potato,2021,7,7,409.0
+Ragi,1997,2,2,74.0
+Ragi,1998,3,3,115.0
+Ragi,1999,3,3,84.0
+Ragi,2000,3,3,93.0
+Ragi,2001,2,2,76.0
+Ragi,2002,3,3,83.0
+Ragi,2003,3,3,105.0
+Ragi,2004,2,2,86.0
+Ragi,2005,3,3,70.0
+Ragi,2006,3,3,49.0
+Ragi,2007,4,4,58.0
+Ragi,2008,3,3,72.0
+Ragi,2009,4,4,76.0
+Ragi,2010,4,4,72.0
+Ragi,2011,5,5,69.0
+Ragi,2012,5,5,76.0
+Ragi,2013,5,5,76.0
+Ragi,2014,2,2,40.0
+Ragi,2015,2,2,42.0
+Ragi,2016,2,2,23.0
+Ragi,2017,5,5,151.0
+Ragi,2018,5,5,127.0
+Ragi,2019,5,5,132.0
+Ragi,2020,2,2,87.0
+Ragi,2021,2,2,69.0
+Rapeseed & Mustard (Toria/Taramira),1996,7,7,1006.0
+Rapeseed & Mustard (Toria/Taramira),1997,7,7,967.0
+Rapeseed & Mustard (Toria/Taramira),1998,7,7,884.0
+Rapeseed & Mustard (Toria/Taramira),1999,7,7,1007.0
+Rapeseed & Mustard (Toria/Taramira),2000,8,8,868.0
+Rapeseed & Mustard (Toria/Taramira),2001,8,8,989.0
+Rapeseed & Mustard (Toria/Taramira),2002,9,9,896.0
+Rapeseed & Mustard (Toria/Taramira),2003,9,9,1038.0
+Rapeseed & Mustard (Toria/Taramira),2004,9,9,1087.0
+Rapeseed & Mustard (Toria/Taramira),2005,7,7,1106.0
+Rapeseed & Mustard (Toria/Taramira),2006,7,7,1053.0
+Rapeseed & Mustard (Toria/Taramira),2007,8,8,927.41
+Rapeseed & Mustard (Toria/Taramira),2008,8,8,1076.0
+Rapeseed & Mustard (Toria/Taramira),2009,8,8,984.0
+Rapeseed & Mustard (Toria/Taramira),2010,8,8,1006.0
+Rapeseed & Mustard (Toria/Taramira),2011,8,8,994.0
+Rapeseed & Mustard (Toria/Taramira),2012,8,8,1171.0
+Rapeseed & Mustard (Toria/Taramira),2013,8,8,1084.0
+Rapeseed & Mustard (Toria/Taramira),2014,8,8,1010.0
+Rapeseed & Mustard (Toria/Taramira),2015,8,8,1016.0
+Rapeseed & Mustard (Toria/Taramira),2016,8,8,1018.0
+Rapeseed & Mustard (Toria/Taramira),2017,11,11,1067.0
+Rapeseed & Mustard (Toria/Taramira),2018,11,11,1144.0
+Rapeseed & Mustard (Toria/Taramira),2019,11,11,1030.0
+Rapeseed & Mustard (Toria/Taramira),2020,12,12,1328.0
+Rapeseed & Mustard (Toria/Taramira),2021,12,12,1582.0
+Safflower,1997,1,1,10.0
+Safflower,1998,1,1,16.0
+Safflower,1999,1,1,20.0
+Safflower,2000,2,2,26.0
+Safflower,2001,2,2,29.0
+Safflower,2002,1,1,22.0
+Safflower,2003,1,1,22.0
+Safflower,2004,1,1,36.0
+Safflower,2005,2,2,27.0
+Safflower,2006,1,1,17.0
+Safflower,2007,2,2,25.0
+Safflower,2008,2,2,13.0
+Safflower,2009,2,2,21.0
+Safflower,2010,2,2,12.0
+Safflower,2011,1,1,1.0
+Safflower,2012,1,1,1.0
+Safflower,2013,1,1,4.0
+Safflower,2014,2,2,15.0
+Safflower,2015,2,2,6.0
+Safflower,2017,2,2,7.0
+Safflower,2018,1,1,2.0
+Safflower,2019,1,1,1.0
+Safflower,2020,1,1,5.0
+Safflower,2021,1,1,6.0
+Sesamum (Til),1996,4,4,192.0
+Sesamum (Til),1997,3,3,140.0
+Sesamum (Til),1998,4,4,124.0
+Sesamum (Til),1999,4,4,117.0
+Sesamum (Til),2000,4,4,136.0
+Sesamum (Til),2001,5,5,204.0
+Sesamum (Til),2002,5,5,117.0
+Sesamum (Til),2003,5,5,228.0
+Sesamum (Til),2004,6,6,297.0
+Sesamum (Til),2005,6,6,267.0
+Sesamum (Til),2006,6,6,241.0
+Sesamum (Til),2007,6,6,298.0
+Sesamum (Til),2008,5,5,302.0
+Sesamum (Til),2009,5,5,247.0
+Sesamum (Til),2010,5,5,274.0
+Sesamum (Til),2011,7,7,271.0
+Sesamum (Til),2012,7,7,281.0
+Sesamum (Til),2013,7,7,275.0
+Sesamum (Til),2014,7,7,401.0
+Sesamum (Til),2015,7,7,396.0
+Sesamum (Til),2016,7,7,257.0
+Sesamum (Til),2017,8,8,267.0
+Sesamum (Til),2018,10,10,311.0
+Sesamum (Til),2019,9,9,307.0
+Sesamum (Til),2020,10,10,317.0
+Sesamum (Til),2021,10,10,229.0
+Soyabean,1996,3,3,369.0
+Soyabean,1997,3,3,384.0
+Soyabean,1998,3,3,412.0
+Soyabean,1999,3,3,394.0
+Soyabean,2000,3,3,417.0
+Soyabean,2001,3,3,429.0
+Soyabean,2002,4,4,378.0
+Soyabean,2003,4,4,443.0
+Soyabean,2004,4,4,486.0
+Soyabean,2005,3,3,561.0
+Soyabean,2006,4,4,562.0
+Soyabean,2007,4,4,595.0
+Soyabean,2008,3,3,563.0
+Soyabean,2009,3,3,539.0
+Soyabean,2010,3,3,537.0
+Soyabean,2011,4,4,609.0
+Soyabean,2012,4,4,638.1
+Soyabean,2013,4,4,655.0
+Soyabean,2014,5,5,599.0
+Soyabean,2015,5,5,602.0
+Soyabean,2016,5,5,616.0
+Soyabean,2017,6,6,634.0
+Soyabean,2018,6,6,623.0
+Soyabean,2019,6,6,599.0
+Soyabean,2020,8,8,698.0
+Soyabean,2021,7,7,632.0
+Sugarcane,1996,3,3,365.0
+Sugarcane,1997,4,4,382.0
+Sugarcane,1998,6,6,524.0
+Sugarcane,1999,6,6,599.0
+Sugarcane,2000,6,6,612.0
+Sugarcane,2001,6,6,575.0
+Sugarcane,2002,7,7,664.0
+Sugarcane,2003,7,7,569.0
+Sugarcane,2004,7,7,485.0
+Sugarcane,2005,7,7,627.0
+Sugarcane,2006,7,7,744.0
+Sugarcane,2007,7,7,695.0
+Sugarcane,2008,7,7,506.0
+Sugarcane,2009,7,7,523.0
+Sugarcane,2010,7,7,599.0
+Sugarcane,2011,7,7,699.0
+Sugarcane,2012,7,7,703.0
+Sugarcane,2013,7,7,681.0
+Sugarcane,2014,6,6,626.0
+Sugarcane,2015,6,6,573.0
+Sugarcane,2016,6,6,476.0
+Sugarcane,2017,9,9,593.26
+Sugarcane,2018,10,10,700.0
+Sugarcane,2019,10,10,579.0
+Sugarcane,2020,7,7,580.0
+Sugarcane,2021,7,7,661.0
+Sunflower,1996,4,4,189.0
+Sunflower,1997,4,4,206.0
+Sunflower,1998,3,3,122.0
+Sunflower,1999,3,3,106.0
+Sunflower,2000,3,3,72.0
+Sunflower,2001,3,3,83.0
+Sunflower,2002,3,3,133.0
+Sunflower,2003,2,2,106.0
+Sunflower,2004,3,3,192.0
+Sunflower,2005,3,3,218.0
+Sunflower,2006,3,3,151.0
+Sunflower,2007,3,3,140.0
+Sunflower,2008,3,3,169.0
+Sunflower,2009,3,3,96.0
+Sunflower,2010,3,3,48.0
+Sunflower,2011,3,3,31.0
+Sunflower,2012,3,3,58.0
+Sunflower,2013,3,3,32.0
+Sunflower,2014,2,2,51.0
+Sunflower,2015,2,2,31.0
+Sunflower,2016,2,2,9.0
+Sunflower,2017,1,1,22.0
+Sunflower,2018,3,3,21.0
+Sunflower,2019,4,4,30.0
+Sunflower,2020,3,3,45.0
+Sunflower,2021,3,3,52.0
+Tapioca,1997,1,1,97.0
+Tapioca,1998,1,1,93.0
+Tapioca,1999,1,1,93.0
+Tapioca,2000,1,1,82.0
+Tapioca,2001,1,1,86.0
+Tur (Arhar),1996,5,5,551.0
+Tur (Arhar),1997,5,5,511.0
+Tur (Arhar),1998,6,6,454.0
+Tur (Arhar),1999,8,8,723.0
+Tur (Arhar),2000,7,7,712.0
+Tur (Arhar),2001,7,7,661.0
+Tur (Arhar),2002,8,8,650.0
+Tur (Arhar),2003,8,8,673.0
+Tur (Arhar),2004,7,7,666.0
+Tur (Arhar),2005,8,8,668.0
+Tur (Arhar),2006,9,9,652.0
+Tur (Arhar),2007,9,9,673.0
+Tur (Arhar),2008,9,9,520.12
+Tur (Arhar),2009,9,9,609.0
+Tur (Arhar),2010,9,9,721.0
+Tur (Arhar),2011,8,8,536.0
+Tur (Arhar),2012,8,8,483.0
+Tur (Arhar),2013,8,8,486.0
+Tur (Arhar),2014,7,7,473.0
+Tur (Arhar),2015,7,7,462.0
+Tur (Arhar),2016,7,7,655.0
+Tur (Arhar),2017,10,10,538.0
+Tur (Arhar),2018,11,11,493.0
+Tur (Arhar),2019,9,9,444.0
+Tur (Arhar),2020,8,8,494.0
+Tur (Arhar),2021,8,8,450.0
+Tur (Arhar),2022,5,5,418.0
+Tur (Arhar),2023,5,5,418.0
+Tur (Arhar),2024,5,5,418.0
+Tur (Arhar),2025,5,5,418.0
+Urad,1996,5,5,435.0
+Urad,1997,5,5,496.0
+Urad,1998,4,4,390.0
+Urad,1999,6,6,477.0
+Urad,2000,7,7,571.0
+Urad,2001,6,6,565.0
+Urad,2002,8,8,601.0
+Urad,2003,8,8,594.0
+Urad,2004,8,8,559.0
+Urad,2005,8,8,507.0
+Urad,2006,8,8,606.0
+Urad,2007,8,8,625.0
+Urad,2008,8,8,481.0
+Urad,2009,8,8,570.0
+Urad,2010,8,8,596.0
+Urad,2011,8,8,500.0
+Urad,2012,8,8,473.0
+Urad,2013,8,8,408.0
+Urad,2014,7,7,368.0
+Urad,2015,7,7,409.0
+Urad,2016,7,7,436.0
+Urad,2017,9,9,737.0
+Urad,2018,11,11,538.0
+Urad,2019,11,11,510.0
+Urad,2020,11,11,608.0
+Urad,2021,11,11,608.0
+Urad,2022,5,5,450.0
+Urad,2023,5,5,450.0
+Urad,2024,5,5,450.0
+Urad,2025,5,5,450.0
+Watermelon,2010,4,4,153.0
+Watermelon,2011,4,4,160.0
+Watermelon,2012,4,4,114.0
+Watermelon,2013,4,4,145.0
+Watermelon,2014,3,3,143.0
+Watermelon,2015,3,3,211.0
+Watermelon,2016,3,3,135.0
+Watermelon,2017,5,5,172.0
+Watermelon,2018,5,5,195.0
+Watermelon,2019,5,5,164.0
+Watermelon,2020,5,5,199.0
+Watermelon,2021,5,5,243.0
+Watermelon,2022,5,5,243.0
+Watermelon,2023,5,5,243.0
+Watermelon,2024,5,5,243.0
+Watermelon,2025,5,5,243.0
+Wheat,1996,8,8,2504.04
+Wheat,1997,8,8,3052.0
+Wheat,1998,7,7,2733.0
+Wheat,1999,7,7,2772.0
+Wheat,2000,8,8,2688.0
+Wheat,2001,8,8,2813.0
+Wheat,2002,11,11,2822.0
+Wheat,2003,11,11,2973.0
+Wheat,2004,11,11,2915.0
+Wheat,2005,12,12,2983.0
+Wheat,2006,12,12,3062.0
+Wheat,2007,12,12,3035.42
+Wheat,2008,13,13,3237.0
+Wheat,2009,13,13,3096.0
+Wheat,2010,13,13,3410.0
+Wheat,2011,13,13,3245.0
+Wheat,2012,13,13,3224.0
+Wheat,2013,13,13,3370.0
+Wheat,2014,13,13,3441.0
+Wheat,2015,13,13,3285.0
+Wheat,2016,13,13,3404.0
+Wheat,2017,14,14,3241.15
+Wheat,2018,14,14,3187.0
+Wheat,2019,14,14,3388.0
+Wheat,2020,13,13,3465.0
+Wheat,2021,13,13,3253.0

@@ -1,0 +1,62 @@
+paths:
+  price_dir: "示例输入/最小可测输入/价格数据/原始"
+  yield_file: "示例输入/最小可测输入/产量数据/原始/产量历史数据.csv"
+  cost_file: "示例输入/最小可测输入/成本数据/原始/加权平均成本数据.csv"
+  name_map: "示例输入/最小可测输入/数据/映射/作物名称映射.csv"
+  env_file: "示例输入/最小可测输入/环境推荐/数据/作物推荐数据.csv"
+  output_dir: "示例输入/最小可测输入/输出"
+
+time:
+  train_start_year: 2015
+  val_years: [2020, 2021]
+  test_years: [2022, 2023, 2024]
+  inference_year: 2025
+
+features:
+  task_lags: [1, 2, 3]
+  rolling_windows: [2, 3]
+  include_cross_task_lags: true
+  include_crop_hierarchy: true
+  price_include_cross_task_lags: false
+  price_include_crop_hierarchy: true
+
+training:
+  random_seed: 42
+  hpo_trials: 2
+  base_models: ["hgb", "rf"]
+  base_models_by_task:
+    price: ["hgb", "rf"]
+    yield: ["hgb", "rf"]
+    cost: ["hgb", "rf", "ridge"]
+  target_transform_by_task:
+    price: "log1p"
+    yield: "log1p"
+    cost: "none"
+  recency_weight_alpha_by_task:
+    price: 0.8
+    yield: 0.6
+    cost: 1.0
+  cv_objective_weights_by_task:
+    price: {mae: 0.30, rmse: 0.45, mape: 0.15, rank: 0.10}
+    yield: {mae: 0.45, rmse: 0.35, mape: 0.15, rank: 0.05}
+    cost: {mae: 0.30, rmse: 0.50, mape: 0.15, rank: 0.05}
+  real_sample_weight: 1.0
+  imputed_sample_weight: 0.5
+  min_crop_rows_for_local_price: 3
+  min_crop_rows_for_residual: 2
+  enable_residual_correction_by_task:
+    yield: true
+    cost: false
+
+imputation_rules:
+  yield_real_max_year: 2021
+  cost_real_max_year: 2021
+  proxy_cost_is_imputed: true
+
+evaluation:
+  top_k: 2
+  score_search_trials: 20
+  run_ablation: false
+
+outputs_lifecycle:
+  enabled: false

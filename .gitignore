@@ -1,0 +1,30 @@
+# Generated outputs and model artifacts
+输出/
+outputs/
+dist_run*/
+__HISTORY_OFF__/
+
+# Runtime data
+数据/系统/
+
+# Logs and reports
+*.log
+*_report*.json
+*_rows*.csv
+
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Frontend / editor noise
+node_modules/
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

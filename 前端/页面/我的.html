@@ -1,0 +1,69 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策助手 - 我的</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1 class="brand">农作物决策助手</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">智能推荐</a>
+        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link" href="/store">农资商城</a>
+        <a class="nav-link" href="/community">经验交流</a>
+        <a class="nav-link" href="/profile">我的</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+      <div class="user-box">
+        <span id="userName" class="user-pill">-</span>
+        <button id="logoutBtn" class="btn btn-danger" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="hero decision-hero">
+      <div>
+        <p class="eyebrow">我的</p>
+        <h1>查看你的推荐记录和常用设置</h1>
+        <p class="hero-copy">这里可以查看最近的推荐结果、常看作物和基础设置。</p>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-label">最近记录</div>
+        <div class="hero-panel-title">回看上次推荐</div>
+        <div class="hero-panel-copy">方便继续比较作物、收益和风险，不用重新查找。</div>
+      </div>
+    </section>
+
+    <section class="grid grid-2" style="margin-top:16px;">
+      <article class="card">
+        <div class="section-head">
+        <div>
+          <p class="eyebrow">最近记录</p>
+          <h2>推荐记录</h2>
+        </div>
+        <a class="text-link" href="/recommend">返回推荐</a>
+      </div>
+        <div id="profileHistoryList" class="preview-card-list"></div>
+      </article>
+
+      <article class="card">
+        <div class="section-head">
+        <div>
+          <p class="eyebrow">常看内容</p>
+          <h2>常看作物与设置</h2>
+        </div>
+        <a class="text-link" href="/recommend">去推荐页</a>
+      </div>
+        <div id="profileFavoritesList" class="preview-card-list"></div>
+        <div id="profileSettingsList" class="preview-card-list" style="margin-top:12px;"></div>
+      </article>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/前端/资源/脚本/我的页.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,2518 @@
+{
+  "created_at": "2026-03-18T16:25:20.950309",
+  "dataset_path": "D:/桌面/种植/环境推荐/数据/作物推荐数据.csv",
+  "scenario_file": "D:/桌面/种植/数据/样例/环境场景库.json",
+  "scenario_count": 44,
+  "scenarios_per_crop": 2,
+  "topk": 3,
+  "items": [
+    {
+      "scenario_id": "apple_anchor",
+      "label": "apple",
+      "role": "anchor",
+      "env_input": {
+        "N": 24.0,
+        "P": 128.0,
+        "K": 196.0,
+        "temperature": 22.75088787,
+        "humidity": 90.69489172,
+        "ph": 5.521466996,
+        "rainfall": 110.4317855
+      },
+      "best_label": "apple",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "apple",
+          "prob": 1.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        },
+        {
+          "crop": "banana",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 1.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "apple_median",
+      "label": "apple",
+      "role": "median",
+      "env_input": {
+        "N": 29.0,
+        "P": 128.0,
+        "K": 198.0,
+        "temperature": 22.44075021,
+        "humidity": 92.70785115,
+        "ph": 5.685062404,
+        "rainfall": 121.4977331
+      },
+      "best_label": "apple",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "apple",
+          "prob": 1.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        },
+        {
+          "crop": "banana",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 1.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "banana_anchor",
+      "label": "banana",
+      "role": "anchor",
+      "env_input": {
+        "N": 117.0,
+        "P": 81.0,
+        "K": 53.0,
+        "temperature": 29.50704598,
+        "humidity": 78.20585613,
+        "ph": 5.507641777999999,
+        "rainfall": 98.12565829
+      },
+      "best_label": "banana",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "banana",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 1.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "banana_median",
+      "label": "banana",
+      "role": "median",
+      "env_input": {
+        "N": 91.0,
+        "P": 84.0,
+        "K": 52.0,
+        "temperature": 29.14827211,
+        "humidity": 78.71024836,
+        "ph": 6.390741836,
+        "rainfall": 117.536781
+      },
+      "best_label": "banana",
+      "best_prob": 0.9991812227074236,
+      "label_prob": 0.9991812227074236,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "banana",
+          "prob": 0.9991812227074236
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0005458515283842794
+        },
+        {
+          "crop": "papaya",
+          "prob": 0.0001819505094614265
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.9991812227074236,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 9.097525473071325e-05,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0001819505094614265,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0005458515283842794,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "blackgram_anchor",
+      "label": "blackgram",
+      "role": "anchor",
+      "env_input": {
+        "N": 43.0,
+        "P": 68.0,
+        "K": 20.0,
+        "temperature": 29.57812712,
+        "humidity": 66.17587668,
+        "ph": 7.497469256,
+        "rainfall": 69.43895491
+      },
+      "best_label": "blackgram",
+      "best_prob": 0.9999090247452693,
+      "label_prob": 0.9999090247452693,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "blackgram",
+          "prob": 0.9999090247452693
+        },
+        {
+          "crop": "lentil",
+          "prob": 9.097525473071325e-05
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.9999090247452693,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 9.097525473071325e-05,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "blackgram_median",
+      "label": "blackgram",
+      "role": "median",
+      "env_input": {
+        "N": 40.0,
+        "P": 68.0,
+        "K": 17.0,
+        "temperature": 34.1262979,
+        "humidity": 65.14877461,
+        "ph": 7.733149554,
+        "rainfall": 70.40795007
+      },
+      "best_label": "blackgram",
+      "best_prob": 0.9840452508028928,
+      "label_prob": 0.9840452508028928,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "blackgram",
+          "prob": 0.9840452508028928
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.007256648413853652
+        },
+        {
+          "crop": "pigeonpeas",
+          "prob": 0.004366234606409279
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.9840452508028928,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0003465723989741457,
+        "lentil": 0.0020606617222337746,
+        "maize": 0.001651706291444283,
+        "mango": 0.0001819505094614265,
+        "mothbeans": 0.007256648413853652,
+        "mungbean": 9.097525473071325e-05,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.004366234606409279,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "chickpea_anchor",
+      "label": "chickpea",
+      "role": "anchor",
+      "env_input": {
+        "N": 40.0,
+        "P": 72.0,
+        "K": 77.0,
+        "temperature": 17.02498456,
+        "humidity": 16.98861173,
+        "ph": 7.485996067,
+        "rainfall": 88.55123143
+      },
+      "best_label": "chickpea",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "chickpea",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 1.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "chickpea_median",
+      "label": "chickpea",
+      "role": "median",
+      "env_input": {
+        "N": 26.0,
+        "P": 80.0,
+        "K": 83.0,
+        "temperature": 17.08498521,
+        "humidity": 16.14565756,
+        "ph": 7.528599957000001,
+        "rainfall": 71.31007253
+      },
+      "best_label": "chickpea",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "chickpea",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 1.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "coconut_anchor",
+      "label": "coconut",
+      "role": "anchor",
+      "env_input": {
+        "N": 19.0,
+        "P": 26.0,
+        "K": 29.0,
+        "temperature": 26.93141945,
+        "humidity": 98.80313612,
+        "ph": 5.67154928,
+        "rainfall": 166.5712879
+      },
+      "best_label": "coconut",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "coconut",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 1.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "coconut_median",
+      "label": "coconut",
+      "role": "median",
+      "env_input": {
+        "N": 0.0,
+        "P": 29.0,
+        "K": 32.0,
+        "temperature": 28.05912437,
+        "humidity": 98.3670985,
+        "ph": 5.868255858,
+        "rainfall": 171.65163959999995
+      },
+      "best_label": "coconut",
+      "best_prob": 0.9980297359118319,
+      "label_prob": 0.9980297359118319,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "coconut",
+          "prob": 0.9980297359118319
+        },
+        {
+          "crop": "mungbean",
+          "prob": 0.0008202213442388115
+        },
+        {
+          "crop": "papaya",
+          "prob": 0.0003898939488459139
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 8.086689309396732e-05,
+        "chickpea": 0.0,
+        "coconut": 0.9980297359118319,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0002911208151382824,
+        "mothbeans": 0.0,
+        "mungbean": 0.0008202213442388115,
+        "muskmelon": 0.0,
+        "orange": 0.00024260067928190198,
+        "papaya": 0.0003898939488459139,
+        "pigeonpeas": 0.0001455604075691412,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "coffee_anchor",
+      "label": "coffee",
+      "role": "anchor",
+      "env_input": {
+        "N": 108.0,
+        "P": 24.0,
+        "K": 31.0,
+        "temperature": 24.12832546,
+        "humidity": 56.18107663,
+        "ph": 6.431899747999999,
+        "rainfall": 147.27578180000003
+      },
+      "best_label": "coffee",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "coffee",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 1.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "coffee_median",
+      "label": "coffee",
+      "role": "median",
+      "env_input": {
+        "N": 85.0,
+        "P": 35.0,
+        "K": 32.0,
+        "temperature": 26.24928198,
+        "humidity": 54.28617819,
+        "ph": 6.854011265,
+        "rainfall": 133.1120232
+      },
+      "best_label": "coffee",
+      "best_prob": 0.9946307271088931,
+      "label_prob": 0.9946307271088931,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "coffee",
+          "prob": 0.9946307271088931
+        },
+        {
+          "crop": "maize",
+          "prob": 0.0020930084794713614
+        },
+        {
+          "crop": "jute",
+          "prob": 0.0010902590051061667
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.00016173378618793464,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.9946307271088931,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0010902590051061667,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0020930084794713614,
+        "mango": 0.0002729257641921397,
+        "mothbeans": 0.0001455604075691412,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0007682354843926896,
+        "pigeonpeas": 0.0007335782444952751,
+        "pomegranate": 0.0001039717196922437,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "cotton_anchor",
+      "label": "cotton",
+      "role": "anchor",
+      "env_input": {
+        "N": 134.0,
+        "P": 52.0,
+        "K": 18.0,
+        "temperature": 23.9643129,
+        "humidity": 76.59175937,
+        "ph": 7.994679507000001,
+        "rainfall": 76.13090645
+      },
+      "best_label": "cotton",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "cotton",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 1.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "cotton_median",
+      "label": "cotton",
+      "role": "median",
+      "env_input": {
+        "N": 133.0,
+        "P": 47.0,
+        "K": 23.0,
+        "temperature": 24.88738107,
+        "humidity": 75.62137159,
+        "ph": 6.827354668,
+        "rainfall": 89.76050416
+      },
+      "best_label": "cotton",
+      "best_prob": 0.9964750698921007,
+      "label_prob": 0.9964750698921007,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "cotton",
+          "prob": 0.9964750698921007
+        },
+        {
+          "crop": "maize",
+          "prob": 0.0030674545412536685
+        },
+        {
+          "crop": "banana",
+          "prob": 0.00031191515907673113
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.00031191515907673113,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.9964750698921007,
+        "grapes": 0.0,
+        "jute": 0.0001455604075691412,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0030674545412536685,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "grapes_anchor",
+      "label": "grapes",
+      "role": "anchor",
+      "env_input": {
+        "N": 24.0,
+        "P": 130.0,
+        "K": 195.0,
+        "temperature": 29.99677232,
+        "humidity": 81.54156612,
+        "ph": 6.112305667,
+        "rainfall": 67.12534492
+      },
+      "best_label": "grapes",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "grapes",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 1.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "grapes_median",
+      "label": "grapes",
+      "role": "median",
+      "env_input": {
+        "N": 36.0,
+        "P": 133.0,
+        "K": 198.0,
+        "temperature": 25.51939719,
+        "humidity": 83.98351748,
+        "ph": 6.2286454,
+        "rainfall": 69.17281221
+      },
+      "best_label": "grapes",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "grapes",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 1.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "jute_anchor",
+      "label": "jute",
+      "role": "anchor",
+      "env_input": {
+        "N": 73.0,
+        "P": 43.0,
+        "K": 42.0,
+        "temperature": 26.58361011,
+        "humidity": 78.00774772,
+        "ph": 6.310699968,
+        "rainfall": 154.8238864
+      },
+      "best_label": "jute",
+      "best_prob": 0.9971690811210463,
+      "label_prob": 0.9971690811210463,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "jute",
+          "prob": 0.9971690811210463
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0012098264827522468
+        },
+        {
+          "crop": "coffee",
+          "prob": 0.0006296065248030313
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0005943716642406599,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0006296065248030313,
+        "cotton": 9.097525473071325e-05,
+        "grapes": 0.0,
+        "jute": 0.9971690811210463,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.00012130033964095099,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 8.086689309396732e-05,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0012098264827522468,
+        "watermelon": 0.0001039717196922437
+      }
+    },
+    {
+      "scenario_id": "jute_median",
+      "label": "jute",
+      "role": "median",
+      "env_input": {
+        "N": 72.0,
+        "P": 51.0,
+        "K": 40.0,
+        "temperature": 23.20683504,
+        "humidity": 74.09956958,
+        "ph": 7.422318499,
+        "rainfall": 199.4766779
+      },
+      "best_label": "jute",
+      "best_prob": 0.9570120260622449,
+      "label_prob": 0.9570120260622449,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "jute",
+          "prob": 0.9570120260622449
+        },
+        {
+          "crop": "rice",
+          "prob": 0.037593285737390555
+        },
+        {
+          "crop": "coffee",
+          "prob": 0.004502264273006631
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.004502264273006631,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.9570120260622449,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0001039717196922437,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0006065016982047549,
+        "pigeonpeas": 0.0001819505094614265,
+        "pomegranate": 0.0,
+        "rice": 0.037593285737390555,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "kidneybeans_anchor",
+      "label": "kidneybeans",
+      "role": "anchor",
+      "env_input": {
+        "N": 22.0,
+        "P": 60.0,
+        "K": 24.0,
+        "temperature": 18.78226261,
+        "humidity": 20.24768314,
+        "ph": 5.630664753,
+        "rainfall": 104.2570723
+      },
+      "best_label": "kidneybeans",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "kidneybeans",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 1.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "kidneybeans_median",
+      "label": "kidneybeans",
+      "role": "median",
+      "env_input": {
+        "N": 27.0,
+        "P": 72.0,
+        "K": 23.0,
+        "temperature": 19.92889503,
+        "humidity": 21.79992115,
+        "ph": 5.961934481,
+        "rainfall": 64.02640797
+      },
+      "best_label": "kidneybeans",
+      "best_prob": 0.9982810009010883,
+      "label_prob": 0.9982810009010883,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "kidneybeans",
+          "prob": 0.9982810009010883
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.0006584875580508768
+        },
+        {
+          "crop": "pigeonpeas",
+          "prob": 0.0004366812227074236
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0002079434393844874,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.9982810009010883,
+        "lentil": 0.0004158868787689748,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0006584875580508768,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0004366812227074236,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "lentil_anchor",
+      "label": "lentil",
+      "role": "anchor",
+      "env_input": {
+        "N": 6.0,
+        "P": 68.0,
+        "K": 18.0,
+        "temperature": 24.388717,
+        "humidity": 62.50453062,
+        "ph": 6.711341147000001,
+        "rainfall": 47.26052494
+      },
+      "best_label": "lentil",
+      "best_prob": 0.9998544395924308,
+      "label_prob": 0.9998544395924308,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "lentil",
+          "prob": 0.9998544395924308
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.0001455604075691412
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.9998544395924308,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0001455604075691412,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "lentil_median",
+      "label": "lentil",
+      "role": "median",
+      "env_input": {
+        "N": 29.0,
+        "P": 71.0,
+        "K": 18.0,
+        "temperature": 22.17499963,
+        "humidity": 62.13873825,
+        "ph": 6.410441476,
+        "rainfall": 53.46622584
+      },
+      "best_label": "lentil",
+      "best_prob": 0.9826058201058202,
+      "label_prob": 0.9826058201058202,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "lentil",
+          "prob": 0.9826058201058202
+        },
+        {
+          "crop": "blackgram",
+          "prob": 0.006407257226034518
+        },
+        {
+          "crop": "maize",
+          "prob": 0.0045323005475843905
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.006407257226034518,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0009545181488412928,
+        "lentil": 0.9826058201058202,
+        "maize": 0.0045323005475843905,
+        "mango": 0.0,
+        "mothbeans": 0.00302211131905455,
+        "mungbean": 0.0003234675723758693,
+        "muskmelon": 0.0,
+        "orange": 0.0001819505094614265,
+        "papaya": 0.0,
+        "pigeonpeas": 0.001972574570827846,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "maize_anchor",
+      "label": "maize",
+      "role": "anchor",
+      "env_input": {
+        "N": 78.0,
+        "P": 48.0,
+        "K": 22.0,
+        "temperature": 23.08974909,
+        "humidity": 63.10459626,
+        "ph": 5.588650585,
+        "rainfall": 70.43473609
+      },
+      "best_label": "maize",
+      "best_prob": 0.99959566553453,
+      "label_prob": 0.99959566553453,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "maize",
+          "prob": 0.99959566553453
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.0004043344654698367
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.99959566553453,
+        "mango": 0.0,
+        "mothbeans": 0.0004043344654698367,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "maize_median",
+      "label": "maize",
+      "role": "median",
+      "env_input": {
+        "N": 73.0,
+        "P": 58.0,
+        "K": 21.0,
+        "temperature": 19.97215954,
+        "humidity": 57.68272924,
+        "ph": 6.596060648,
+        "rainfall": 60.65171481
+      },
+      "best_label": "maize",
+      "best_prob": 0.979392227536332,
+      "label_prob": 0.979392227536332,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "maize",
+          "prob": 0.979392227536332
+        },
+        {
+          "crop": "blackgram",
+          "prob": 0.007492028834823595
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.005151221090085718
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.007492028834823595,
+        "chickpea": 0.0002911208151382824,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0012355306023428294,
+        "grapes": 0.0,
+        "jute": 8.086689309396732e-05,
+        "kidneybeans": 0.0008005822416302766,
+        "lentil": 0.0039286869527044195,
+        "maize": 0.979392227536332,
+        "mango": 0.0,
+        "mothbeans": 0.005151221090085718,
+        "mungbean": 8.086689309396732e-05,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0013620295279683926,
+        "pigeonpeas": 0.0001039717196922437,
+        "pomegranate": 0.0,
+        "rice": 8.086689309396732e-05,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "mango_anchor",
+      "label": "mango",
+      "role": "anchor",
+      "env_input": {
+        "N": 18.0,
+        "P": 26.0,
+        "K": 31.0,
+        "temperature": 32.611261400000004,
+        "humidity": 47.74916499,
+        "ph": 5.418475257000001,
+        "rainfall": 91.10190759
+      },
+      "best_label": "mango",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "mango",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 1.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "mango_median",
+      "label": "mango",
+      "role": "median",
+      "env_input": {
+        "N": 21.0,
+        "P": 21.0,
+        "K": 30.0,
+        "temperature": 27.69819273,
+        "humidity": 51.41593238,
+        "ph": 5.403908327999999,
+        "rainfall": 100.7720705
+      },
+      "best_label": "mango",
+      "best_prob": 0.9986373928513667,
+      "label_prob": 0.9986373928513667,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "mango",
+          "prob": 0.9986373928513667
+        },
+        {
+          "crop": "pomegranate",
+          "prob": 0.0006671518680252304
+        },
+        {
+          "crop": "coffee",
+          "prob": 0.0002911208151382824
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0002911208151382824,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.00024260067928190198,
+        "mango": 0.9986373928513667,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.00016173378618793464,
+        "pomegranate": 0.0006671518680252304,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "mothbeans_anchor",
+      "label": "mothbeans",
+      "role": "anchor",
+      "env_input": {
+        "N": 11.0,
+        "P": 45.0,
+        "K": 19.0,
+        "temperature": 28.70012137,
+        "humidity": 44.359648,
+        "ph": 3.828031463,
+        "rainfall": 44.11622138
+      },
+      "best_label": "mothbeans",
+      "best_prob": 0.9997573993207179,
+      "label_prob": 0.9997573993207179,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "mothbeans",
+          "prob": 0.9997573993207179
+        },
+        {
+          "crop": "pigeonpeas",
+          "prob": 0.00024260067928190198
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.9997573993207179,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.00024260067928190198,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "mothbeans_median",
+      "label": "mothbeans",
+      "role": "median",
+      "env_input": {
+        "N": 29.0,
+        "P": 44.0,
+        "K": 20.0,
+        "temperature": 30.04132304,
+        "humidity": 63.56222995,
+        "ph": 8.620107545,
+        "rainfall": 31.83192392
+      },
+      "best_label": "mothbeans",
+      "best_prob": 0.9697621358101712,
+      "label_prob": 0.9697621358101712,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "mothbeans",
+          "prob": 0.9697621358101712
+        },
+        {
+          "crop": "lentil",
+          "prob": 0.02264532935930315
+        },
+        {
+          "crop": "blackgram",
+          "prob": 0.003144566900025415
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.003144566900025415,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.02264532935930315,
+        "maize": 0.0007812319493542202,
+        "mango": 0.0,
+        "mothbeans": 0.9697621358101712,
+        "mungbean": 0.0027197269009496083,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0009470090801968531,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "mungbean_anchor",
+      "label": "mungbean",
+      "role": "anchor",
+      "env_input": {
+        "N": 28.0,
+        "P": 46.0,
+        "K": 16.0,
+        "temperature": 29.008124,
+        "humidity": 84.96089355,
+        "ph": 6.664187809,
+        "rainfall": 45.91011391
+      },
+      "best_label": "mungbean",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "mungbean",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 1.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "mungbean_median",
+      "label": "mungbean",
+      "role": "median",
+      "env_input": {
+        "N": 4.0,
+        "P": 36.0,
+        "K": 22.0,
+        "temperature": 27.60887393,
+        "humidity": 86.13316408,
+        "ph": 7.012740397000001,
+        "rainfall": 43.80041104
+      },
+      "best_label": "mungbean",
+      "best_prob": 0.9978197708001203,
+      "label_prob": 0.9978197708001203,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "mungbean",
+          "prob": 0.9978197708001203
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.0014798641436196021
+        },
+        {
+          "crop": "orange",
+          "prob": 0.0003335759340126152
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 8.086689309396732e-05,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0002859222291536702,
+        "mango": 0.0,
+        "mothbeans": 0.0014798641436196021,
+        "mungbean": 0.9978197708001203,
+        "muskmelon": 0.0,
+        "orange": 0.0003335759340126152,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "muskmelon_anchor",
+      "label": "muskmelon",
+      "role": "anchor",
+      "env_input": {
+        "N": 106.0,
+        "P": 16.0,
+        "K": 54.0,
+        "temperature": 28.96017885,
+        "humidity": 91.69532178,
+        "ph": 6.585872508,
+        "rainfall": 24.7458198
+      },
+      "best_label": "muskmelon",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "muskmelon",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 1.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "muskmelon_median",
+      "label": "muskmelon",
+      "role": "median",
+      "env_input": {
+        "N": 102.0,
+        "P": 11.0,
+        "K": 47.0,
+        "temperature": 27.98780984,
+        "humidity": 92.78226196,
+        "ph": 6.504906978999999,
+        "rainfall": 27.14509034
+      },
+      "best_label": "muskmelon",
+      "best_prob": 0.9998382662138121,
+      "label_prob": 0.9998382662138121,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "muskmelon",
+          "prob": 0.9998382662138121
+        },
+        {
+          "crop": "watermelon",
+          "prob": 8.086689309396732e-05
+        },
+        {
+          "crop": "papaya",
+          "prob": 8.086689309396732e-05
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.9998382662138121,
+        "orange": 0.0,
+        "papaya": 8.086689309396732e-05,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 8.086689309396732e-05
+      }
+    },
+    {
+      "scenario_id": "orange_anchor",
+      "label": "orange",
+      "role": "anchor",
+      "env_input": {
+        "N": 22.0,
+        "P": 17.0,
+        "K": 5.0,
+        "temperature": 24.12188673,
+        "humidity": 90.72351622,
+        "ph": 6.945562889,
+        "rainfall": 102.835632
+      },
+      "best_label": "orange",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "orange",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 1.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "orange_median",
+      "label": "orange",
+      "role": "median",
+      "env_input": {
+        "N": 6.0,
+        "P": 7.0,
+        "K": 7.0,
+        "temperature": 27.68167318,
+        "humidity": 94.47316879,
+        "ph": 7.199106204,
+        "rainfall": 113.9995146
+      },
+      "best_label": "orange",
+      "best_prob": 0.9988418705667613,
+      "label_prob": 0.9988418705667613,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "orange",
+          "prob": 0.9988418705667613
+        },
+        {
+          "crop": "papaya",
+          "prob": 0.0005862849749312632
+        },
+        {
+          "crop": "coconut",
+          "prob": 0.00048086920357662716
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.00048086920357662716,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.9988418705667613,
+        "papaya": 0.0005862849749312632,
+        "pigeonpeas": 0.0,
+        "pomegranate": 9.097525473071325e-05,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "papaya_anchor",
+      "label": "papaya",
+      "role": "anchor",
+      "env_input": {
+        "N": 54.0,
+        "P": 67.0,
+        "K": 52.0,
+        "temperature": 35.67667332,
+        "humidity": 93.30641944,
+        "ph": 6.586107335,
+        "rainfall": 141.3381168
+      },
+      "best_label": "papaya",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "papaya",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 1.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "papaya_median",
+      "label": "papaya",
+      "role": "median",
+      "env_input": {
+        "N": 34.0,
+        "P": 65.0,
+        "K": 48.0,
+        "temperature": 41.41968393,
+        "humidity": 90.03863107,
+        "ph": 6.665024507999999,
+        "rainfall": 199.3096432
+      },
+      "best_label": "papaya",
+      "best_prob": 0.9931618377579079,
+      "label_prob": 0.9931618377579079,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "papaya",
+          "prob": 0.9931618377579079
+        },
+        {
+          "crop": "jute",
+          "prob": 0.0034325108015064343
+        },
+        {
+          "crop": "coffee",
+          "prob": 0.0015283842794759825
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.000363901018922853,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0003292437790254384,
+        "coffee": 0.0015283842794759825,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0034325108015064343,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.00012130033964095099,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.9931618377579079,
+        "pigeonpeas": 0.0004158868787689748,
+        "pomegranate": 8.086689309396732e-05,
+        "rice": 0.0005660682516577712,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "pigeonpeas_anchor",
+      "label": "pigeonpeas",
+      "role": "anchor",
+      "env_input": {
+        "N": 13.0,
+        "P": 73.0,
+        "K": 20.0,
+        "temperature": 30.50420876,
+        "humidity": 35.48885969,
+        "ph": 5.391560417999999,
+        "rainfall": 162.59277230000004
+      },
+      "best_label": "pigeonpeas",
+      "best_prob": 0.999919133106906,
+      "label_prob": 0.999919133106906,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "pigeonpeas",
+          "prob": 0.999919133106906
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 8.086689309396732e-05
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 8.086689309396732e-05,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.999919133106906,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "pigeonpeas_median",
+      "label": "pigeonpeas",
+      "role": "median",
+      "env_input": {
+        "N": 9.0,
+        "P": 59.0,
+        "K": 24.0,
+        "temperature": 20.43517772,
+        "humidity": 39.37252634,
+        "ph": 4.747352458,
+        "rainfall": 137.22796619999997
+      },
+      "best_label": "pigeonpeas",
+      "best_prob": 0.990154166955477,
+      "label_prob": 0.990154166955477,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "pigeonpeas",
+          "prob": 0.990154166955477
+        },
+        {
+          "crop": "mothbeans",
+          "prob": 0.005894041265220306
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.002530844943508699
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 8.086689309396732e-05,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 9.097525473071325e-05,
+        "kidneybeans": 0.002530844943508699,
+        "lentil": 0.0004548762736535662,
+        "maize": 0.0002079434393844874,
+        "mango": 0.0004043344654698367,
+        "mothbeans": 0.005894041265220306,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 9.097525473071325e-05,
+        "papaya": 0.0,
+        "pigeonpeas": 0.990154166955477,
+        "pomegranate": 0.0,
+        "rice": 9.097525473071325e-05,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "pomegranate_anchor",
+      "label": "pomegranate",
+      "role": "anchor",
+      "env_input": {
+        "N": 26.0,
+        "P": 18.0,
+        "K": 42.0,
+        "temperature": 19.72620525,
+        "humidity": 89.64934166,
+        "ph": 6.910374919,
+        "rainfall": 108.22872759999998
+      },
+      "best_label": "pomegranate",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "pomegranate",
+          "prob": 1.0
+        },
+        {
+          "crop": "watermelon",
+          "prob": 0.0
+        },
+        {
+          "crop": "kidneybeans",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 1.0,
+        "rice": 0.0,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "pomegranate_median",
+      "label": "pomegranate",
+      "role": "median",
+      "env_input": {
+        "N": 13.0,
+        "P": 17.0,
+        "K": 45.0,
+        "temperature": 21.25433607,
+        "humidity": 92.65058936,
+        "ph": 7.159520979,
+        "rainfall": 106.2784673
+      },
+      "best_label": "pomegranate",
+      "best_prob": 0.9988597768073751,
+      "label_prob": 0.9988597768073751,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "pomegranate",
+          "prob": 0.9988597768073751
+        },
+        {
+          "crop": "jute",
+          "prob": 0.00024260067928190198
+        },
+        {
+          "crop": "papaya",
+          "prob": 0.00024260067928190198
+        }
+      ],
+      "probabilities": {
+        "apple": 0.00012130033964095099,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.00024260067928190198,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0001455604075691412,
+        "orange": 0.0,
+        "papaya": 0.00024260067928190198,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.9988597768073751,
+        "rice": 0.00024260067928190198,
+        "watermelon": 0.0001455604075691412
+      }
+    },
+    {
+      "scenario_id": "rice_anchor",
+      "label": "rice",
+      "role": "anchor",
+      "env_input": {
+        "N": 76.0,
+        "P": 47.0,
+        "K": 42.0,
+        "temperature": 20.08369642,
+        "humidity": 83.29114712,
+        "ph": 5.739175027000001,
+        "rainfall": 263.6372176
+      },
+      "best_label": "rice",
+      "best_prob": 0.9998382662138121,
+      "label_prob": 0.9998382662138121,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "rice",
+          "prob": 0.9998382662138121
+        },
+        {
+          "crop": "papaya",
+          "prob": 8.086689309396732e-05
+        },
+        {
+          "crop": "coffee",
+          "prob": 8.086689309396732e-05
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 8.086689309396732e-05,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 8.086689309396732e-05,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.9998382662138121,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "rice_median",
+      "label": "rice",
+      "role": "median",
+      "env_input": {
+        "N": 60.0,
+        "P": 51.0,
+        "K": 36.0,
+        "temperature": 22.69657794,
+        "humidity": 82.81088865,
+        "ph": 6.028321557999999,
+        "rainfall": 256.9964761
+      },
+      "best_label": "rice",
+      "best_prob": 0.9799753355976063,
+      "label_prob": 0.9799753355976063,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "rice",
+          "prob": 0.9799753355976063
+        },
+        {
+          "crop": "jute",
+          "prob": 0.017145225387583462
+        },
+        {
+          "crop": "papaya",
+          "prob": 0.0009623160278182113
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.00031191515907673113,
+        "coffee": 0.00024260067928190198,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.017145225387583462,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0008086689309396733,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0009623160278182113,
+        "pigeonpeas": 0.0003719877082322497,
+        "pomegranate": 0.0001819505094614265,
+        "rice": 0.9799753355976063,
+        "watermelon": 0.0
+      }
+    },
+    {
+      "scenario_id": "watermelon_anchor",
+      "label": "watermelon",
+      "role": "anchor",
+      "env_input": {
+        "N": 119.0,
+        "P": 7.0,
+        "K": 55.0,
+        "temperature": 26.03867719,
+        "humidity": 84.6378378,
+        "ph": 6.031424482,
+        "rainfall": 44.3993381
+      },
+      "best_label": "watermelon",
+      "best_prob": 1.0,
+      "label_prob": 1.0,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "watermelon",
+          "prob": 1.0
+        },
+        {
+          "crop": "rice",
+          "prob": 0.0
+        },
+        {
+          "crop": "banana",
+          "prob": 0.0
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.0,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.0,
+        "orange": 0.0,
+        "papaya": 0.0,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 1.0
+      }
+    },
+    {
+      "scenario_id": "watermelon_median",
+      "label": "watermelon",
+      "role": "median",
+      "env_input": {
+        "N": 82.0,
+        "P": 23.0,
+        "K": 49.0,
+        "temperature": 26.81383586,
+        "humidity": 87.21986949,
+        "ph": 6.873283991,
+        "rainfall": 51.70497792
+      },
+      "best_label": "watermelon",
+      "best_prob": 0.9990599223677827,
+      "label_prob": 0.9990599223677827,
+      "confidence": "高",
+      "warnings": [],
+      "topk": [
+        {
+          "crop": "watermelon",
+          "prob": 0.9990599223677827
+        },
+        {
+          "crop": "muskmelon",
+          "prob": 0.00048520135856380397
+        },
+        {
+          "crop": "jute",
+          "prob": 0.000363901018922853
+        }
+      ],
+      "probabilities": {
+        "apple": 0.0,
+        "banana": 0.0,
+        "blackgram": 0.0,
+        "chickpea": 0.0,
+        "coconut": 0.0,
+        "coffee": 0.0,
+        "cotton": 0.0,
+        "grapes": 0.0,
+        "jute": 0.000363901018922853,
+        "kidneybeans": 0.0,
+        "lentil": 0.0,
+        "maize": 0.0,
+        "mango": 0.0,
+        "mothbeans": 0.0,
+        "mungbean": 0.0,
+        "muskmelon": 0.00048520135856380397,
+        "orange": 0.0,
+        "papaya": 9.097525473071325e-05,
+        "pigeonpeas": 0.0,
+        "pomegranate": 0.0,
+        "rice": 0.0,
+        "watermelon": 0.9990599223677827
+      }
+    }
+  ]
+}

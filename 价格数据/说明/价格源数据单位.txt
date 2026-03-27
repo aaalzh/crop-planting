@@ -1,0 +1,8 @@
+| 字段名           | 单位                          |
+| ------------- | --------------------------- |
+| `date`        | 无（日期，格式为 **DD/MM/YYYY**）    |
+| `modal_price` | ₹/quintal                   |
+| `min_price`   | ₹/quintal                   |
+| `max_price`   | ₹/quintal                   |
+| `change`      | ₹/quintal（相对上一期的价格差，和价格同单位） |
+https://agmarknet.ceda.ashoka.edu.in/

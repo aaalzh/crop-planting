@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策助手 - 商品详情</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="page store-detail-page">
+    <header class="topbar">
+      <h1 class="brand">农作物决策助手</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">智能推荐</a>
+        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link active" href="/store">农资商城</a>
+        <a class="nav-link" href="/community">经验交流</a>
+        <a class="nav-link" href="/profile">我的</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+      <div class="user-box">
+        <span id="userName" class="user-pill">-</span>
+        <button id="logoutBtn" class="btn btn-danger" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="detail-breadcrumb">
+      <button id="storeBackBtn" class="text-link store-back-link" type="button">返回上一页</button>
+      <span>/</span>
+      <a class="text-link" href="/store">农资商城</a>
+      <span>/</span>
+      <span id="storeDetailBreadcrumb">商品详情</span>
+    </section>
+
+    <article id="storeDetailRoot" class="card marketplace-detail-root"></article>
+
+    <section class="card" style="margin-top:16px;">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">本店推荐</p>
+          <h2>继续看看其他商品</h2>
+        </div>
+        <a class="text-link" href="/store">返回列表页</a>
+      </div>
+      <div id="storeRelatedList" class="marketplace-grid marketplace-grid-compact"></div>
+    </section>
+  </main>
+
+  <button id="storeFloatingCartBtn" class="store-floating-cart" type="button" aria-expanded="false" aria-label="购物车，0件，点击展开">
+    <span class="store-cart-toggle-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" focusable="false">
+        <circle cx="9" cy="20" r="1.6"></circle>
+        <circle cx="18" cy="20" r="1.6"></circle>
+        <path d="M3 4h2.2l1.7 9.1a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.7L20 8H7.1"></path>
+      </svg>
+    </span>
+    <span class="store-cart-toggle-badge" hidden>0</span>
+    <span class="store-cart-toggle-label">购物车</span>
+  </button>
+  <div id="storeCartPopoverRoot" class="store-cart-popover-root"></div>
+
+  <script type="module" src="/assets/前端/资源/脚本/商品详情页.js"></script>
+</body>
+</html>
+

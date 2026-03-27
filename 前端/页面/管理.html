@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策系统 - 管理</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1 class="brand">管理员页</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">推荐</a>
+        <a class="nav-link" href="/analytics">分析</a>
+        <a class="nav-link" href="/charts">图表</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+      <div class="user-box">
+        <span id="userName" class="user-pill">-</span>
+        <button id="logoutBtn" class="btn btn-danger" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="hero hero-center">
+      <h1>用户与权限管理</h1>
+      <p>
+        可以查看全部账号、调整显示名称、切换角色（管理员/普通用户）以及启用或禁用账号。
+        系统会自动保护最后一个启用管理员，防止误操作导致无人可管。
+      </p>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>账号统计</h2>
+      <div id="adminStats" class="kpi-grid" style="margin-top:12px;"></div>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>用户列表</h2>
+      <div class="table-wrap" style="margin-top:12px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>用户名</th>
+              <th>显示名称</th>
+              <th>角色</th>
+              <th>状态</th>
+              <th>创建时间</th>
+              <th>最近登录</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="adminUsersBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <p id="adminStatus" class="status"></p>
+  </main>
+
+  <script type="module" src="/assets/前端/资源/脚本/管理页.js"></script>
+</body>
+</html>
+

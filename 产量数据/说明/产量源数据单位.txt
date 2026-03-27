@@ -1,0 +1,16 @@
+字段	单位
+_id	无（系统记录 ID）
+id	无（记录/索引字段）
+year	无（年份/年度）
+state_name	无
+state_code	无
+district_name	无
+district_code	无
+season	无
+crop_code	无
+crop_name	无
+crop_type	无
+area	Hectare
+production	Tonnes
+yield	Tonnes/Hectare
+https://ckandev.indiadataportal.com/dataset/area-production-yield-apy/resource/ead44f5f-6471-48ec-a488-4b5894302aaa

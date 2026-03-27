@@ -1,0 +1,66 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策助手 - 农资商城</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1 class="brand">农作物决策助手</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">智能推荐</a>
+        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link active" href="/store">农资商城</a>
+        <a class="nav-link" href="/community">经验交流</a>
+        <a class="nav-link" href="/profile">我的</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+      <div class="user-box">
+        <span id="userName" class="user-pill">-</span>
+        <button id="logoutBtn" class="btn btn-danger" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="hero decision-hero">
+      <div>
+        <p class="eyebrow">农资商城</p>
+        <h1>选购种子、肥料和常用农资</h1>
+        <p class="hero-copy">按作物和用途快速筛选商品，点击商品可查看规格、价格和购买信息。</p>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-label">选购建议</div>
+        <div class="hero-panel-title">按作物挑选更方便</div>
+        <div class="hero-panel-copy">支持搜索、分类筛选和商品详情查看，方便快速找到需要的农资。</div>
+      </div>
+    </section>
+
+    <section class="card marketplace-shell" style="margin-top:16px;">
+      <div class="marketplace-top">
+        <div>
+          <p class="eyebrow">商品列表</p>
+          <h2 id="storeSummaryTitle">农资小商城</h2>
+          <p id="storeSummaryNote" class="muted" style="margin-top:10px;"></p>
+        </div>
+        <div class="marketplace-tools">
+          <label class="marketplace-search">
+            <input id="storeSearchInput" type="search" placeholder="搜索种子、化肥、水溶肥">
+          </label>
+          <span id="storeCartBadge" class="tone-pill tone-safe">购物车 0 件</span>
+        </div>
+      </div>
+
+      <div id="storeCategoryChips" class="marketplace-chip-row"></div>
+      <div class="marketplace-meta-row">
+        <span id="storeProductMeta" class="muted"></span>
+      </div>
+      <div id="storeBundleList" class="marketplace-grid"></div>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/前端/资源/脚本/商城页.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>农作物决策助手 - 经验交流</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <h1 class="brand">农作物决策助手</h1>
+      <nav class="nav-links">
+        <a class="nav-link" href="/recommend">智能推荐</a>
+        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link" href="/store">农资商城</a>
+        <a class="nav-link" href="/community">经验交流</a>
+        <a class="nav-link" href="/profile">我的</a>
+        <a class="nav-link" href="/admin" data-admin-only hidden>管理</a>
+      </nav>
+      <div class="user-box">
+        <span id="userName" class="user-pill">-</span>
+        <button id="logoutBtn" class="btn btn-danger" type="button">退出</button>
+      </div>
+    </header>
+
+    <section class="hero decision-hero">
+      <div>
+        <p class="eyebrow">经验交流</p>
+        <h1>看看农友都在聊什么</h1>
+        <p class="hero-copy">浏览帖子、查看经验分享和评论交流，快速了解别人的做法与复盘。</p>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-label">交流方式</div>
+        <div class="hero-panel-title">帖子、正文和评论</div>
+        <div class="hero-panel-copy">打开帖子就能看完整内容，也能顺着评论了解不同地块和做法。</div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">交流概览</p>
+          <h2 id="communitySummaryTitle">经验交流</h2>
+        </div>
+        <a class="text-link" href="/assistant">去 AI 助手咨询</a>
+      </div>
+      <p id="communitySummaryNote" class="muted" style="margin-top:10px;"></p>
+    </section>
+
+    <section class="community-shell">
+      <aside class="card community-feed-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">帖子列表</p>
+            <h2>农友正在讨论什么</h2>
+          </div>
+          <span id="communityThreadMeta" class="muted"></span>
+        </div>
+        <div id="communityThreadList" class="community-thread-list"></div>
+      </aside>
+
+      <article id="communityReader" class="card community-reader-card"></article>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/前端/资源/脚本/交流页.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,23 @@
+crop_name,yield_quintal_per_hectare,source,note
+apple,97.42807038993784,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+banana,451.6090272393927,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+blackgram,12.26055565711739,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+chickpea,8.375850836673859,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+coconut,65.63248625512544,yield_proxy:jute,aligned to 2025 anchor with raw history or donor template
+coffee,7.177588920945897,yield_proxy:mungbean,aligned to 2025 anchor with raw history or donor template
+cotton,24.64236357297852,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+grapes,208.45841975491456,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+jute,151.34113250560932,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+kidneybeans,8.271804179689514,yield_proxy:chickpea,aligned to 2025 anchor with raw history or donor template
+lentil,9.057212778912616,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+maize,28.50629336564318,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+mango,102.96464559357622,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+mothbeans,7.544027740611404,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+mungbean,7.951948147142786,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+muskmelon,209.0281762905948,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+orange,152.07522906091626,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+papaya,343.9696438613732,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+pigeonpeas,10.66669067746662,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+pomegranate,127.19388087229188,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template
+rice,27.401579268792663,yield_trend_bridge,aligned to 2025 anchor with raw history or donor template
+watermelon,313.7942894759015,yield_proxy:banana,aligned to 2025 anchor with raw history or donor template

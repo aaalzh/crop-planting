@@ -1,0 +1,73 @@
+| 字段名                           | 单位                   |
+| ----------------------------- | -------------------- |
+| id                            | 无（记录编号）              |
+| year                          | 无（作物年度字符串，如 2018-19) |
+| state_name                    | 无                    |
+| state_code                    | 无                    |
+| crop_name                     | 无                    |
+| crop_code                     | 无                    |
+| crop_type                     | 无                    |
+| cul_cost_a1                   | ₹/hectare            |
+| cul_cost_a2                   | ₹/hectare            |
+| cul_cost_b1                   | ₹/hectare            |
+| cul_cost_b2                   | ₹/hectare            |
+| cul_cost_c1                   | ₹/hectare            |
+| cul_cost_c2                   | ₹/hectare            |
+| cul_cost_c2rev                | ₹/hectare            |
+| cul_cost_a2fl                 | ₹/hectare            |
+| prod_cost_a1                  | ₹/quintal            |
+| prod_cost_a2                  | ₹/quintal            |
+| prod_cost_b1                  | ₹/quintal            |
+| prod_cost_b2                  | ₹/quintal            |
+| prod_cost_c1                  | ₹/quintal            |
+| prod_cost_c2                  | ₹/quintal            |
+| prod_cost_c2rev               | ₹/quintal            |
+| prod_cost_c3                  | ₹/quintal            |
+| prod_cost_a2fl                | ₹/quintal            |
+| main_product_value            | ₹/hectare            |
+| by_product_value              | ₹/hectare            |
+| mat_lab_input_seed            | kg/hectare           |
+| mat_lab_input_fertilizer      | kg/hectare           |
+| mat_lab_input_manure          | quintal/hectare      |
+| mat_lab_input_hmn_lab         | hour/hectare         |
+| mat_lab_input_ani_lab         | hour/hectare         |
+| seed_rate_per_unit            | ₹/kg                 |
+| fert_rate_per_unit            | ₹/kg                 |
+| manure_rate_per_unit          | ₹/quintal            |
+| hmn_lab_rate_per_unit         | ₹/hour               |
+| ani_lab_rate_per_unit         | ₹/hour               |
+| implicit_rate                 | ₹/quintal            |
+| num_holdings_sample           | 无（样本农户数,count)       |
+| num_tehsils_sample            | 无（样本 tehsil 数,count) |
+| derived_yield                 | quintal/hectare      |
+| hmn_lab_hrs_family            | hour/hectare         |
+| hmn_lab_hrs_attached          | hour/hectare         |
+| hmn_lab_hrs_casual            | hour/hectare         |
+| opr_cost_hmn_lab_family       | ₹/hectare            |
+| opr_cost_hmn_lab_attached     | ₹/hectare            |
+| opr_cost_hmn_lab_casual       | ₹/hectare            |
+| opr_cost_ani_lab_hired        | ₹/hectare            |
+| opr_cost_ani_lab_owned        | ₹/hectare            |
+| opr_cost_mch_lab_hired        | ₹/hectare            |
+| opr_cost_mch_lab_owned        | ₹/hectare            |
+| opr_cost_seed                 | ₹/hectare            |
+| opr_cost_fertilizer           | ₹/hectare            |
+| opr_cost_manure               | ₹/hectare            |
+| opr_cost_insecticides         | ₹/hectare            |
+| opr_cost_irrigation_chrg      | ₹/hectare            |
+| opr_cost_misc                 | ₹/hectare            |
+| opr_cost_interest_on_wrk_cap  | ₹/hectare            |
+| opr_cost                      | ₹/hectare            |
+| fix_cost_owned_land_rental    | ₹/hectare            |
+| fix_cost_leased_land_rent     | ₹/hectare            |
+| fix_cost_land_rev_tax_cess    | ₹/hectare            |
+| fix_cost_depr_impl_farm_build | ₹/hectare            |
+| fix_cost_interest_fix_cap     | ₹/hectare            |
+| fix_cost                      | ₹/hectare            |
+| opr_cost_crop_insurance       | ₹/hectare            |
+| opr_cost_contractor_pay       | ₹/hectare            |
+https://ckandev.indiadataportal.com/dataset/cost-of-cultivation/resource/be22e37e-acfc-43a9-859c-d4a066489a69
+
+说明：
+
+- 当前源数据已完成统一整理，并作为主成本表的基础数据。

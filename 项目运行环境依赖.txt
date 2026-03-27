@@ -1,0 +1,67 @@
+项目运行环境依赖说明
+
+1. 推荐基础环境
+- 操作系统：Windows 10/11 + PowerShell
+- Python：3.10 或 3.11
+- pip：建议先升级到最新版
+- 浏览器：Chrome 或 Edge 最新版
+- Node.js / npm：当前仓库前端为静态资源直出，不是必需
+
+2. Python 必需三方依赖
+- numpy
+- pandas
+- scipy
+- scikit-learn
+- joblib
+- pyyaml
+- fastapi
+- uvicorn
+- pydantic
+
+3. Python 可选依赖
+- playwright
+  说明：仅在执行价格爬虫 `价格数据/脚本/价格数据爬虫.py` 时需要
+  额外命令：`python -m playwright install chromium`
+
+4. 前端依赖
+- 无需执行 `npm install`
+- 仓库已内置前端运行依赖：
+  - Vue 3.5.13：`前端/资源/依赖/视图框架生产版.js`
+  - ECharts 5.5.0：`前端/资源/依赖/图表库压缩版.js`
+
+5. 可选环境变量
+- DEEPSEEK_API_KEY
+  说明：仅 AI 助手 / 决策支持链路需要，不配置也不影响基础推荐、训练、发布治理
+
+6. 项目内必须存在的数据与模型文件
+- 数据/映射/作物名称映射.csv
+- 价格数据/原始/*.csv
+- 成本数据/原始/加权平均成本数据.csv
+- 产量数据/原始/单位面积产量表.csv
+- 产量数据/原始/产量历史数据.csv
+- 环境推荐/模型/作物推荐模型管道.pkl
+- 输出/发布/20260323_fullrerun_sync01
+- 输出/stage/20260323_fullrerun_sync01
+- 后端/配置.20260323_fullrerun_sync01.yaml
+- 训练流水线/配置/高精度.20260323_fullrerun_sync01.yaml
+
+7. 一次性安装命令
+- `python -m pip install --upgrade pip`
+- `pip install numpy pandas scipy scikit-learn joblib pyyaml fastapi uvicorn pydantic`
+- `pip install playwright`
+- `python -m playwright install chromium`
+
+8. 常用启动命令
+- 推荐 CLI：
+  `python 后端/入口/主流程.py recommend --env-json 数据/样例/环境示例.json`
+- 本地服务：
+  `python 后端/入口/本地服务.py --host 127.0.0.1 --port 8000`
+- 训练主入口：
+  `python -m 训练流水线.运行训练 --config 训练流水线/配置/高精度.yaml`
+- 当前版本复现：
+  `python 后端/训练/闭环高精度训练.py --train-config 训练流水线/配置/高精度.20260323_fullrerun_sync01.yaml --backend-config 后端/配置.20260323_fullrerun_sync01.yaml`
+
+9. 备注
+- Python 标准库不需要额外安装，例如：argparse、json、pathlib、logging、threading、urllib 等。
+- 本仓库没有现成的 requirements.txt / package.json；本文件是按源码实际导入和当前项目结构整理出的运行依赖清单。
+- 如果你只运行当前线上版本，核心依赖是第 2 节；第 3 节与第 5 节都属于可选能力。

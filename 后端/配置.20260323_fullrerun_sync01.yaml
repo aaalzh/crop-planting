@@ -1,0 +1,615 @@
+project:
+  root: .
+paths:
+  env_model_dir: 环境推荐/数据
+  env_model_bundle: 输出/stage/20260323_fullrerun_sync01/环境推荐/作物推荐模型管道.pkl
+  env_predict_py: 环境推荐/脚本/环境预测.py
+  price_dir: 价格数据/原始
+  cost_file: 成本数据/原始/加权平均成本数据.csv
+  cost_units: 成本数据/说明/加权平均成本数据单位.txt
+  price_units: 价格数据/说明/价格源数据单位.txt
+  yield_file: 产量数据/原始/单位面积产量表.csv
+  yield_history: 产量数据/原始/产量历史数据.csv
+  name_map: 数据/映射/作物名称映射.csv
+time:
+  price_history_days: 365
+  use_dynamic_in_sample_windows: true
+  price_prediction_window_months: 6
+  price_summary_window_days: 30
+  cost_prediction_window_years: 3
+  yield_prediction_window_years: 3
+  price_forecast_horizon_days: 181
+  train_validation_cutoff_date: ''
+  strict_cutoff_split: true
+  prediction_window_start_date: ''
+  prediction_window_end_date: ''
+  price_backtest_days: 180
+  price_lags:
+  - 1
+  - 2
+  - 3
+  - 5
+  - 7
+  - 14
+  - 21
+  - 30
+  price_roll_windows:
+  - 7
+  - 14
+  - 30
+  - 90
+alignment:
+  frequency: year
+  strategy: trend_extrapolate_with_uncertainty
+  history_years: 8
+  min_trend_points: 3
+  target_year: null
+  score_penalty_per_year: 0.05
+  max_score_penalty: 0.35
+model:
+  env:
+    n_estimators: 1374
+    max_depth: 30
+    min_samples_split: 11
+    min_samples_leaf: 1
+    max_features: null
+    class_weight: balanced
+    test_size: 0.2
+    n_jobs: 1
+    random_state: 42
+    search:
+      enabled: true
+      trials: 20
+      coarse_trials: 20
+      fine_trials: 12
+      fine_neighbors: 1
+      cv_folds: 5
+      seed: 143
+      objective_weights:
+        log_loss: 0.45
+        macro_f1: 0.3
+        balanced_accuracy: 0.15
+        top3_accuracy: 0.1
+      n_estimators_choices:
+      - 96
+      - 128
+      - 192
+      - 256
+      - 320
+      - 480
+      - 640
+      - 800
+      - 1000
+      - 1200
+      - 1400
+      max_depth_choices:
+      - null
+      - 8
+      - 12
+      - 16
+      - 20
+      - 24
+      - 30
+      - 36
+      min_samples_split_choices:
+      - 2
+      - 4
+      - 6
+      - 8
+      - 10
+      - 12
+      - 16
+      - 20
+      min_samples_leaf_choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 6
+      - 8
+      max_features_choices:
+      - null
+      - sqrt
+      - log2
+      - 0.4
+      - 0.6
+      - 0.8
+      - 1.0
+  price:
+    regressor: ensemble
+    prediction_mode: return_recursive_v3
+    enable_direct_trend_residual_v3: true
+    direct_trend_residual_fallback_to_legacy: false
+    enable_hybrid_direct_v3: true
+    hybrid_fallback_to_legacy: false
+    direct_multi_horizons:
+    - 1
+    - 3
+    - 7
+    - 14
+    - 30
+    - 60
+    - 90
+    - 120
+    - 150
+    - 181
+    direct_multi_horizon_by_crop: {}
+    direct_multi_horizon_cap: 365
+    direct_multi_force_include_default_horizon: false
+    direct_use_crop_serve_horizon: true
+    direct_serve_horizon: 181
+    blend_weight_main: 0.82
+    blend_weight_baseline: 0.18
+    blend_weight_l2: 0.08
+    blend_calibration_ratio: 0.16
+    blend_calibration_min_rows: 45
+    blend_calibration_max_rows: 160
+    blend_calibration_min_train_rows: 240
+    blend_guard_min_relative_gain: 0.03
+    blend_guard_full_trust_gain: 0.12
+    blend_guard_selection_tolerance: 0.005
+    blend_guard_max_weight: 0.85
+    blend_guard_winner_soft_weight: 0.65
+    blend_guard_winner_min_weight: 0.55
+    blend_guard_direction_margin: 0.08
+    trend_alpha: 1.0
+    trend_feature_prefixes:
+    - lag_
+    - roll_mean_
+    - roll_std_
+    - doy_
+    - dow_
+    - week_
+    - month_
+    - is_weekend
+    baseline_feature_weights: {}
+    anchor_component_names:
+    - legacy_blend
+    - last_price
+    - short_cycle
+    - medium_cycle
+    - yearly_cycle
+    - robust_level
+    anchor_component_weight_l2: 0.03
+    anchor_guard_min_relative_gain: 0.01
+    anchor_guard_full_trust_gain: 0.04
+    anchor_guard_selection_tolerance: 0.003
+    anchor_component_max_weight: 0.65
+    lgbm_n_estimators: 520
+    lgbm_learning_rate: 0.03
+    lgbm_num_leaves: 63
+    lgbm_max_depth: -1
+    lgbm_min_child_samples: 16
+    lgbm_subsample: 0.9
+    lgbm_colsample_bytree: 0.9
+    lgbm_reg_alpha: 0.0
+    lgbm_reg_lambda: 1.0
+    ensemble_members:
+    - hgb
+    - rf
+    - etr
+    ensemble_weight_metric: rmse
+    ensemble_weight_power: 1.0
+    ensemble_best_ratio_metric: mape
+    ensemble_best_ratio_threshold: 0.85
+    ensemble_best_gap_min: 0.01
+    max_iter: 700
+    max_depth: 8
+    learning_rate: 0.03
+    l2_regularization: 0.001
+    target_transform: log1p
+    include_raw_time_features: false
+    time_raw_mode: none
+    use_recency_weight: true
+    recency_halflife_days: 365
+    n_jobs: 1
+    verbose: true
+    recursive_enable: true
+    train_recursive_step_model: true
+    recursive_step_days: 1
+    recursive_inline_train_on_missing: true
+    recursive_fallback_regressor: hgb
+    recursive_fallback_max_iter: 260
+    recursive_fallback_max_depth: 6
+    recursive_fallback_learning_rate: 0.04
+    recursive_fallback_l2_regularization: 0.001
+    recursive_max_daily_move_pct: null
+    recursive_anchor_max_blend: 0.65
+    recursive_mean_reversion_strength: 0.18
+    recursive_seasonal_strength: 0.22
+    recursive_corridor_low_quantile: 0.05
+    recursive_corridor_high_quantile: 0.95
+    recursive_corridor_low_multiplier: 0.75
+    recursive_corridor_high_multiplier: 1.35
+    recursive_anchor_valid_ratio_low: 0.7
+    recursive_anchor_valid_ratio_high: 1.4
+    recursive_terminal_low_ratio_vs_latest: 0.6
+    recursive_terminal_high_ratio_vs_latest: 1.8
+    enable_seasonal_anchor: true
+    enable_bias_correction: true
+    enable_conformal_interval: true
+    conformal_abs_quantile: 0.9
+    conformal_use_horizon_scale: true
+    conformal_horizon_scale_cap_days: 181
+    conformal_local_vol_window_days: 45
+    conformal_local_vol_ratio_low: 0.7
+    conformal_local_vol_ratio_high: 1.4
+    return_clip_quantile: 0.98
+    return_clip_safety_factor: 1.2
+    return_clip_r_max: null
+    conformal_interval_growth_power: 0.5
+    conformal_interval_growth_scale: 1.0
+    conformal_interval_growth_cap: 200.0
+    recursive_return_smooth_alpha: 0.15
+    recursive_return_jerk_clip_sigma: 2.5
+    recursive_return_smooth_warmup_steps: 5
+    direct_reference_enable: true
+    direct_reference_weight: 0.1
+    direct_reference_max_weight: 0.35
+    direct_reference_progress_power: 1.25
+    direct_reference_anchor_radius_days: 14
+    direct_reference_local_boost: 0.12
+    direct_reference_min_future_points: 2
+    clip_rate_warn_threshold: 0.1
+    degrade_to_direct_on_clip_too_often: true
+    recursive_use_terminal_anchor: true
+    recursive_terminal_anchor_weight: 0.35
+    recursive_terminal_anchor_tail_days: 45
+    recursive_terminal_anchor_tail_power: 1.6
+    endpoint_direction_guard: true
+    endpoint_opposite_slack: 1.5
+    endpoint_same_dir_cap: 4.0
+    seasonal_anchor_tau_days: 110
+    seasonal_anchor_min_ml_weight: 0.3
+    seasonal_drift_max_alpha: 0.18
+    seasonal_drift_growth_power: 1.8
+    seasonal_anchor_min_samples_per_doy: 2
+    trend_guard_early_drop_floor: -0.08
+    trend_guard_early_window_days: 28
+    trend_guard_end_ratio_low: 0.85
+    trend_guard_end_ratio_high: 1.15
+    trend_guard_hist_window_days: 90
+    trend_guard_future_window_days: 60
+    trend_guard_t0_jump_max: 0.03
+    trend_guard_t0_jump_steps: 1
+    trend_guard_end_tail_days: 35
+    trend_guard_end_max_weight: 0.92
+    trend_guard_end_pressure_scale: 6.5
+    trend_guard_end_backstop: true
+    trend_a_t0_jump_median_max: 0.03
+    trend_b_early_drop_median_min: -0.08
+    trend_c_end_ratio_median_min: 0.85
+    trend_c_end_ratio_median_max: 1.15
+    trend_d_direction_mismatch_ratio_max: 0.5
+    trend_majority_crop_ratio_min: 0.8
+    trend_e_coverage_global_min: 0.75
+    trend_e_interval_non_decreasing_roll_min: 0.95
+    trend_e_interval_non_decreasing_ratio_min: 0.9
+    legacy_include_raw_time_features: true
+    legacy_time_raw_mode: raw
+    strict_override_expiry: false
+    per_crop_overrides:
+      banana:
+        created_at: '2026-03-04'
+        expires_at: '2026-04-03'
+        owner: unknown
+        reason: targeted early-drop fix after trend check (19/22 -> 22/22)
+        params:
+          trend_guard_early_drop_floor: -0.0795
+          seasonal_drift_max_alpha: 0.168
+          seasonal_drift_growth_power: 1.92
+      chickpea:
+        created_at: '2026-03-04'
+        expires_at: '2026-04-03'
+        owner: unknown
+        reason: targeted early-drop fix after trend check (19/22 -> 22/22)
+        params:
+          trend_guard_early_drop_floor: -0.068
+          seasonal_drift_max_alpha: 0.1
+          seasonal_drift_growth_power: 3.0
+      mango:
+        created_at: '2026-03-04'
+        expires_at: '2026-04-03'
+        owner: unknown
+        reason: targeted early-drop fix after trend check (19/22 -> 22/22)
+        params:
+          trend_guard_early_drop_floor: -0.0775
+          seasonal_drift_max_alpha: 0.158
+          seasonal_drift_growth_power: 2.12
+  cost:
+    regressor: ensemble
+    auto_candidates:
+    - ridge
+    - huber
+    - qgb
+    - gbr_huber
+    - hgb
+    - etr
+    - rf
+    ensemble_members:
+    - hgb
+    - etr
+    - rf
+    ensemble_huber_blend_weight: 0.5
+    alpha: 1.0
+    target_transform: none
+    rf_n_estimators: 500
+    rf_min_samples_leaf: 2
+    etr_n_estimators: 700
+    etr_min_samples_leaf: 2
+    hgb_max_iter: 600
+    hgb_max_depth: 6
+    hgb_learning_rate: 0.03
+    hgb_l2_regularization: 0.001
+    hgb_loss: squared_error
+    test_ratio: 0.2
+    feature_set: panel_lite
+    panel_lags:
+    - 1
+    - 2
+    - 3
+    - 4
+    panel_windows:
+    - 2
+    - 3
+    - 5
+    - 7
+    panel_include_crop_hierarchy: true
+    panel_include_price_lags: false
+    panel_include_yield_lags: false
+    panel_include_quality_lags: false
+    panel_lag1_blend_weight: 0.4
+    huber_alpha: 0.5
+    huber_epsilon: 1.25
+    huber_max_iter: 400
+    qgb_alpha: 0.55
+    qgb_n_estimators: 400
+    qgb_learning_rate: 0.04
+    qgb_max_depth: 2
+    qgb_min_samples_leaf: 2
+    gbr_huber_alpha: 0.9
+    gbr_n_estimators: 500
+    gbr_learning_rate: 0.03
+    gbr_max_depth: 2
+    gbr_min_samples_leaf: 2
+    use_recency_weight: false
+    recency_halflife_years: 8
+    postprocess_enable: true
+    postprocess_trend_deviation_threshold: 0.35
+    postprocess_trend_blend_weight: 0.6
+    postprocess_min_ratio_vs_latest: 0.55
+    postprocess_max_ratio_vs_latest: 1.8
+    n_jobs: 1
+    verbose: true
+  yield:
+    prefer_model_prediction: true
+    regressor: ensemble
+    ensemble_members:
+    - hgb
+    - rf
+    - etr
+    ensemble_weight_metric: rmse
+    ensemble_weight_grid_steps: 20
+    search:
+      enabled: true
+      trials: 10
+      seed: 253
+      metric: rmse
+      hgb_max_iter_choices:
+      - 200
+      - 300
+      - 450
+      - 700
+      - 900
+      - 1200
+      hgb_max_depth_choices:
+      - 3
+      - 4
+      - 5
+      - 6
+      - 8
+      - null
+      hgb_learning_rate_choices:
+      - 0.015
+      - 0.02
+      - 0.03
+      - 0.05
+      - 0.08
+      - 0.12
+      hgb_l2_regularization_choices:
+      - 0.0
+      - 0.001
+      - 0.01
+      - 0.03
+      - 0.1
+      hgb_min_samples_leaf_choices:
+      - 7
+      - 12
+      - 20
+      - 30
+      - 40
+      rf_n_estimators_choices:
+      - 200
+      - 300
+      - 400
+      - 500
+      - 700
+      - 900
+      rf_min_samples_leaf_choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      rf_max_depth_choices:
+      - 4
+      - 6
+      - 8
+      - 10
+      - 12
+      - null
+      rf_max_features_choices:
+      - 0.6
+      - 0.8
+      - 1.0
+      - sqrt
+      - log2
+      etr_n_estimators_choices:
+      - 200
+      - 300
+      - 500
+      - 700
+      - 900
+      etr_min_samples_leaf_choices:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      etr_max_depth_choices:
+      - 4
+      - 6
+      - 8
+      - 10
+      - 12
+      - null
+      etr_max_features_choices:
+      - 0.6
+      - 0.8
+      - 1.0
+      - sqrt
+      - log2
+    max_iter: 1200
+    max_depth: 6
+    learning_rate: 0.02
+    l2_regularization: 0.01
+    hgb_min_samples_leaf: 20
+    rf_n_estimators: 300
+    rf_min_samples_leaf: 1
+    rf_max_depth: null
+    rf_max_features: 1.0
+    etr_n_estimators: 700
+    etr_min_samples_leaf: 2
+    etr_max_depth: null
+    etr_max_features: 1.0
+    target_transform: log1p
+    use_relative_weight: false
+    relative_error_floor: 5.0
+    enable_history_features: true
+    local_trend_window: 3
+    year_poly_degree: 1
+    use_crop_year_interaction: true
+    prior_weight_metric: mae
+    prior_weight_grid_steps: 20
+    blend_last_weight: 0.25
+    lambda_constant_metric: mae
+    lambda_grid_size: 51
+    lambda_ridge_alpha: 1.0
+    lambda_min_train_rows: 60
+    lambda_target_gap_floor: 0.001
+    oof_min_train_years: 5
+    oof_min_train_rows: 60
+    oof_max_validation_years: 8
+    test_ratio: 0.2
+    n_jobs: 1
+    verbose: true
+scoring:
+  risk_penalty: 0.35
+  env_prob_weight: 1.0
+  profit_weight: 1.0
+  min_env_prob: 0.1
+  max_candidates: 8
+output:
+  out_dir: 输出/stage/20260323_fullrerun_sync01
+  top_k: 5
+probability:
+  enable_calibrator: false
+  topk: 1
+  calibration_method: auto
+  sort_by: score_total
+  seed: 42
+  history_file: ''
+  env_history_file: ''
+  min_samples_isotonic: 2000
+  class_weight: balanced
+  use_prob_env: true
+  use_profit_pred: true
+  use_price_pred: true
+  use_yield_pred: true
+  use_cost_pred: true
+  use_risk_score: true
+  use_score_total: false
+  use_volatility: true
+  use_ood_flag: true
+  use_env_confidence: true
+  auto_drop_suspicious_features: true
+  suspicious_feature_auc_threshold: 0.995
+  min_feature_count_after_sanitization: 2
+  drop_feature_names: []
+  downweight_easy_groups: true
+  easy_group_rel_margin_ref: 0.2
+  easy_group_weight_floor: 0.35
+  prefer_sigmoid_on_easy_labels: true
+  sigmoid_easy_label_margin_median_threshold: 0.6
+  sigmoid_easy_label_ratio_threshold: 0.95
+  walk_forward:
+    enable: true
+    initial_train_ratio: 0.6
+    step_size: 30
+    horizon: 30
+  predict_clip_epsilon: 0.0001
+serving:
+  model_cache_version: v2
+  recommend_strategy: online
+  precomputed_recommendation_file: 输出/stage/20260323_fullrerun_sync01/推荐结果.csv
+  precomputed_fallback_online: true
+  active_release_policy: champion
+  strict_model_loading: true
+  calibrator_degraded_fallback: env_prob
+  request_cache_ttl_seconds: 300
+  request_cache_max_entries: 256
+  log_file: 输出/stage/20260323_fullrerun_sync01/服务日志.log
+release:
+  enabled: true
+  root_dir: 输出/发布
+  auto_promote_on_pass: true
+  keep_archived: 12
+  gate:
+    max_metric_regression_ratio: 0.03
+    max_profit_mae_regression_ratio: 0.03
+    min_topk_profit_ratio: 0.0
+    min_ndcg_delta: -0.01
+    min_hit_rate_delta: -0.01
+    require_env_scenario_library: true
+    min_env_scenario_count: 1
+    env_prob_sum_tolerance: 0.02
+    require_score_weight_provenance: true
+    require_shadow_replay_when_logs_exist: true
+    shadow_replay_max_events: 20
+    shadow_topk: 5
+    min_shadow_top1_match_rate: 0.5
+    min_shadow_selected_hit_rate: 0.5
+feedback:
+  inference_log_file: 输出/闭环/推理事件.jsonl
+  feedback_log_file: 输出/闭环/用户反馈.jsonl
+  training_sample_file: 输出/闭环/反馈训练样本.jsonl
+  training_sample_csv: 输出/闭环/反馈训练样本.csv
+  training_summary_file: 输出/闭环/反馈训练摘要.json
+  competition_overview_file: 输出/闭环/竞赛概览.json
+env_bridge:
+  dataset_file: 环境推荐/数据/作物推荐数据.csv
+  scenario_file: 数据/样例/环境场景库.json
+  scenarios_per_crop: 2
+  topk: 3
+llm:
+  enabled: true
+  provider: deepseek
+  model: deepseek-chat
+  endpoint: https://api.deepseek.com/chat/completions
+  api_key: ''
+  api_key_env: DEEPSEEK_API_KEY
+  timeout_seconds: 60
+auth:
+  users_file: 数据/系统/用户.json
+  session_ttl_seconds: 43200
+  session_max_entries: 4096

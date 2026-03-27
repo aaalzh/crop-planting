@@ -1,0 +1,329 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>种植决策平台 - 登录</title>
+  <link rel="stylesheet" href="/assets/前端/资源/样式/主样式.css">
+</head>
+<body>
+  <main class="auth-layout auth-layout-career">
+    <section class="auth-hero auth-hero-career">
+      <div class="auth-hero-grid"></div>
+      <div class="auth-hero-glow auth-hero-glow-a"></div>
+      <div class="auth-hero-glow auth-hero-glow-b"></div>
+
+      <div class="auth-hero-side">
+        <div class="auth-hero-head">
+          <a class="auth-brand" href="/">
+            <span class="auth-brand-mark" aria-hidden="true">
+              <span class="auth-brand-core"></span>
+            </span>
+            <span class="auth-brand-text">
+              <strong>种植决策平台</strong>
+            </span>
+          </a>
+        </div>
+
+        <div class="auth-feature-list" aria-label="平台能力概览">
+          <div class="auth-feature-chip">
+            <span class="auth-feature-index">01</span>
+            <span>环境参数评估与适种推荐</span>
+          </div>
+          <div class="auth-feature-chip">
+            <span class="auth-feature-index">02</span>
+            <span>价格、成本、产量联动分析</span>
+          </div>
+          <div class="auth-feature-chip">
+            <span class="auth-feature-index">03</span>
+            <span>推荐、分析、图表统一入口</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-hero-copy">
+        <h1 class="auth-title">
+          <span>让环境、成本与价格在同一条链路中完成种植决策</span>
+        </h1>
+      </div>
+
+      <div id="authScene" class="auth-hero-scene" aria-hidden="true">
+        <div class="scene-character scene-character-purple">
+          <span class="scene-eyes">
+            <span class="scene-eye"><i class="scene-pupil"></i></span>
+            <span class="scene-eye"><i class="scene-pupil"></i></span>
+          </span>
+        </div>
+        <div class="scene-character scene-character-dark">
+          <span class="scene-eyes">
+            <span class="scene-eye"><i class="scene-pupil"></i></span>
+            <span class="scene-eye"><i class="scene-pupil"></i></span>
+          </span>
+        </div>
+        <div class="scene-character scene-character-orange">
+          <span class="scene-eyes scene-eyes-pupil-only">
+            <span class="scene-eye scene-eye-flat"><i class="scene-pupil"></i></span>
+            <span class="scene-eye scene-eye-flat"><i class="scene-pupil"></i></span>
+          </span>
+        </div>
+        <div class="scene-character scene-character-yellow">
+          <span class="scene-eyes scene-eyes-pupil-only">
+            <span class="scene-eye scene-eye-flat"><i class="scene-pupil"></i></span>
+            <span class="scene-eye scene-eye-flat"><i class="scene-pupil"></i></span>
+          </span>
+          <span class="scene-mouth"></span>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="auth-box auth-box-career">
+      <div class="auth-card auth-card-career">
+        <div class="auth-mobile-brand">
+          <span class="auth-brand-mark" aria-hidden="true">
+            <span class="auth-brand-core"></span>
+          </span>
+          <span class="auth-brand-text">
+            <strong>种植决策平台</strong>
+          </span>
+        </div>
+
+        <div class="auth-mode-bar" role="tablist" aria-label="登录与注册切换">
+          <button id="loginTabBtn" class="auth-mode-btn active" type="button" role="tab" aria-selected="true" aria-controls="loginPanel">
+            登录
+          </button>
+          <button id="registerTabBtn" class="auth-mode-btn" type="button" role="tab" aria-selected="false" aria-controls="registerPanel">
+            注册
+          </button>
+        </div>
+
+        <section id="loginPanel" class="auth-panel auth-panel-career active" role="tabpanel" aria-labelledby="loginTabBtn">
+          <header class="auth-panel-head">
+            <h2>登录你的工作台</h2>
+            <p class="muted">请输入用户名和密码，继续查看推荐、分析与图表结果。</p>
+          </header>
+
+          <form id="loginForm" class="auth-form-grid" novalidate>
+            <label class="auth-field">
+              <span>用户名</span>
+              <input
+                id="loginUsernameInput"
+                name="username"
+                required
+                minlength="3"
+                maxlength="32"
+                autocomplete="username"
+                placeholder="请输入用户名"
+              >
+            </label>
+
+            <label class="auth-field">
+              <span>密码</span>
+              <div class="input-inline-actions">
+                <input
+                  id="loginPasswordInput"
+                  type="password"
+                  name="password"
+                  required
+                  minlength="8"
+                  maxlength="128"
+                  autocomplete="current-password"
+                  placeholder="请输入密码"
+                  data-caps-tip="loginCapsTip"
+                >
+                <button type="button" class="toggle-pwd-btn" data-toggle-target="loginPasswordInput" aria-label="显示密码">
+                  <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 3l18 18"></path>
+                    <path d="M10.58 10.58a2 2 0 1 0 2.83 2.83"></path>
+                    <path d="M9.88 5.09A10.94 10.94 0 0 1 12 5c7 0 11 7 11 7a21.85 21.85 0 0 1-5.17 6.26"></path>
+                    <path d="M6.61 6.61A21.83 21.83 0 0 0 1 12s4 7 11 7a10.94 10.94 0 0 0 4.09-.78"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="loginCapsTip" class="caps-tip">检测到 Caps Lock 已开启，请确认大小写。</div>
+            </label>
+
+            <div class="auth-inline-row">
+              <label class="auth-check">
+                <input id="rememberLogin" type="checkbox" name="remember">
+                <span>记住登录状态</span>
+              </label>
+              <button id="forgotPasswordBtn" type="button" class="auth-text-link">忘记密码？</button>
+            </div>
+
+            <div class="auth-actions auth-actions-stack">
+              <button type="submit" class="auth-cta auth-cta-primary">
+                <span class="auth-cta-static">登录并进入</span>
+                <span class="auth-cta-hover">
+                  登录并进入
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M5 12h14"></path>
+                    <path d="M13 5l7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+
+              <button id="loginSwitchToRegisterBtn" type="button" class="auth-cta auth-cta-secondary">
+                <span class="auth-cta-static">创建新账号</span>
+                <span class="auth-cta-hover">
+                  去注册
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M5 12h14"></path>
+                    <path d="M13 5l7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+
+            <p id="loginStatus" class="status"></p>
+          </form>
+
+          <footer class="auth-footer-note">
+            <span>还没有账号？</span>
+            <button id="loginFooterSwitchBtn" type="button" class="auth-text-link auth-text-link-strong">立即注册</button>
+          </footer>
+        </section>
+
+        <section id="registerPanel" class="auth-panel auth-panel-career" role="tabpanel" aria-labelledby="registerTabBtn">
+          <header class="auth-panel-head">
+            <h2>注册新的账号</h2>
+            <p class="muted">注册完成后系统会自动登录，并直接跳转到推荐页。</p>
+          </header>
+
+          <form id="registerForm" class="auth-form-grid" novalidate>
+            <label class="auth-field">
+              <span>用户名</span>
+              <input
+                id="registerUsernameInput"
+                name="username"
+                required
+                minlength="3"
+                maxlength="32"
+                autocomplete="username"
+                placeholder="字母、数字或下划线"
+              >
+            </label>
+
+            <label class="auth-field">
+              <span>显示名称</span>
+              <input
+                id="registerDisplayNameInput"
+                name="display_name"
+                maxlength="32"
+                autocomplete="nickname"
+                placeholder="可选，不填则默认使用用户名"
+              >
+            </label>
+
+            <label class="auth-field">
+              <span>密码</span>
+              <div class="input-inline-actions">
+                <input
+                  id="registerPasswordInput"
+                  type="password"
+                  name="password"
+                  required
+                  minlength="8"
+                  maxlength="128"
+                  autocomplete="new-password"
+                  placeholder="至少 8 位，建议混合大小写、数字和符号"
+                  data-caps-tip="registerCapsTip"
+                >
+                <button type="button" class="toggle-pwd-btn" data-toggle-target="registerPasswordInput" aria-label="显示密码">
+                  <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 3l18 18"></path>
+                    <path d="M10.58 10.58a2 2 0 1 0 2.83 2.83"></path>
+                    <path d="M9.88 5.09A10.94 10.94 0 0 1 12 5c7 0 11 7 11 7a21.85 21.85 0 0 1-5.17 6.26"></path>
+                    <path d="M6.61 6.61A21.83 21.83 0 0 0 1 12s4 7 11 7a10.94 10.94 0 0 0 4.09-.78"></path>
+                  </svg>
+                </button>
+              </div>
+              <div id="registerCapsTip" class="caps-tip">检测到 Caps Lock 已开启，请确认大小写。</div>
+              <div class="password-strength">
+                <div class="strength-track">
+                  <div id="passwordStrengthFill" class="strength-fill"></div>
+                </div>
+                <div id="passwordStrengthText" class="strength-text">当前强度：弱，0/6</div>
+              </div>
+            </label>
+
+            <label class="auth-field">
+              <span>确认密码</span>
+              <div class="input-inline-actions">
+                <input
+                  id="confirmPasswordInput"
+                  type="password"
+                  name="confirm_password"
+                  required
+                  minlength="8"
+                  maxlength="128"
+                  autocomplete="new-password"
+                  placeholder="请再次输入密码"
+                >
+                <button type="button" class="toggle-pwd-btn" data-toggle-target="confirmPasswordInput" aria-label="显示密码">
+                  <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 3l18 18"></path>
+                    <path d="M10.58 10.58a2 2 0 1 0 2.83 2.83"></path>
+                    <path d="M9.88 5.09A10.94 10.94 0 0 1 12 5c7 0 11 7 11 7a21.85 21.85 0 0 1-5.17 6.26"></path>
+                    <path d="M6.61 6.61A21.83 21.83 0 0 0 1 12s4 7 11 7a10.94 10.94 0 0 0 4.09-.78"></path>
+                  </svg>
+                </button>
+              </div>
+            </label>
+
+            <p class="auth-rule-note muted">
+              密码规则：至少 8 位，并同时包含大写字母、小写字母、数字和符号会更安全。
+            </p>
+
+            <div class="auth-actions auth-actions-stack">
+              <button type="submit" class="auth-cta auth-cta-primary">
+                <span class="auth-cta-static">注册并进入</span>
+                <span class="auth-cta-hover">
+                  注册并进入
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M5 12h14"></path>
+                    <path d="M13 5l7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+
+              <button id="registerBackToLoginBtn" type="button" class="auth-cta auth-cta-secondary">
+                <span class="auth-cta-static">返回登录</span>
+                <span class="auth-cta-hover">
+                  返回登录
+                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M5 12h14"></path>
+                    <path d="M13 5l7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+            </div>
+
+            <p id="registerStatus" class="status"></p>
+          </form>
+
+          <footer class="auth-footer-note">
+            <span>已经有账号？</span>
+            <button id="registerFooterSwitchBtn" type="button" class="auth-text-link auth-text-link-strong">返回登录</button>
+          </footer>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/前端/资源/脚本/登录页.js"></script>
+</body>
+</html>
+
