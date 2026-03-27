@@ -23,6 +23,45 @@ def _bool_env(name: str, default: bool = False) -> bool:
     return raw in {"1", "true", "yes", "on"}
 
 
+def _nonempty_env(name: str) -> Optional[str]:
+    value = str(os.environ.get(name, "")).strip()
+    return value or None
+
+
+def _apply_llm_env_overrides(llm_cfg: Dict[str, Any]) -> None:
+    enabled_env = _nonempty_env("CROP_LLM_ENABLED")
+    if enabled_env is not None:
+        llm_cfg["enabled"] = enabled_env.lower() in {"1", "true", "yes", "on"}
+
+    for cfg_key, env_name in [
+        ("provider", "CROP_LLM_PROVIDER"),
+        ("model", "CROP_LLM_MODEL"),
+        ("endpoint", "CROP_LLM_ENDPOINT"),
+        ("api_key_env", "CROP_LLM_API_KEY_ENV"),
+    ]:
+        value = _nonempty_env(env_name)
+        if value is not None:
+            llm_cfg[cfg_key] = value
+
+    for cfg_key, env_name in [
+        ("timeout_seconds", "CROP_LLM_TIMEOUT_SECONDS"),
+        ("max_tokens", "CROP_LLM_MAX_TOKENS"),
+        ("temperature", "CROP_LLM_TEMPERATURE"),
+    ]:
+        value = _nonempty_env(env_name)
+        if value is not None:
+            llm_cfg[cfg_key] = value
+
+    if _nonempty_env("CROP_LLM_API_KEY") is not None:
+        llm_cfg["api_key"] = ""
+        llm_cfg["api_key_env"] = "CROP_LLM_API_KEY"
+
+    api_key_env = str(llm_cfg.get("api_key_env", "")).strip() or "DEEPSEEK_API_KEY"
+    has_direct_key = bool(str(llm_cfg.get("api_key", "")).strip())
+    has_env_key = bool(_nonempty_env(api_key_env))
+    llm_cfg["enabled"] = bool(llm_cfg.get("enabled", False)) and (has_direct_key or has_env_key)
+
+
 def _ensure_parent(path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -227,9 +266,7 @@ def build_runtime_config(
     feedback_cfg["competition_overview_file"] = (feedback_root / "competition_overview.json").as_posix()
 
     auth_cfg["users_file"] = (data_root / "system" / "users.json").as_posix()
-
-    if not str(os.environ.get("DEEPSEEK_API_KEY", "")).strip():
-        llm_cfg["enabled"] = False
+    _apply_llm_env_overrides(llm_cfg)
 
     _ensure_parent(runtime_config_path)
     runtime_config_path.write_text(

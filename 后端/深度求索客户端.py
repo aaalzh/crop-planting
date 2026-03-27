@@ -42,6 +42,10 @@ def _resolve_api_key(llm_cfg: Dict[str, Any]) -> str:
     return str(os.getenv(api_env, "")).strip()
 
 
+def _provider_name(llm_cfg: Dict[str, Any]) -> str:
+    return str(llm_cfg.get("provider", "llm")).strip() or "llm"
+
+
 def _extract_http_error_message(exc: HTTPError) -> str:
     try:
         raw = exc.read().decode("utf-8", errors="ignore")
@@ -65,14 +69,14 @@ def _extract_http_error_message(exc: HTTPError) -> str:
     return raw.strip()
 
 
-def deepseek_client_ready(config: Dict[str, Any]) -> bool:
+def llm_client_ready(config: Dict[str, Any]) -> bool:
     llm_cfg = config.get("llm", {}) if isinstance(config, dict) else {}
     if not bool(llm_cfg.get("enabled", False)):
         return False
     return bool(_resolve_api_key(llm_cfg))
 
 
-def request_deepseek_chat(
+def request_llm_chat(
     *,
     config: Dict[str, Any],
     user_message: str,
@@ -86,6 +90,7 @@ def request_deepseek_chat(
     if not api_key:
         raise RuntimeError("missing_api_key")
 
+    provider = _provider_name(llm_cfg)
     endpoint = str(llm_cfg.get("endpoint", "https://api.deepseek.com/chat/completions")).strip()
     model = str(llm_cfg.get("model", "deepseek-chat")).strip() or "deepseek-chat"
     timeout_seconds = _safe_int(llm_cfg.get("timeout_seconds", 60), 60) or 60
@@ -122,19 +127,19 @@ def request_deepseek_chat(
     except HTTPError as exc:
         detail = _extract_http_error_message(exc)
         if logger is not None and hasattr(logger, "warning"):
-            logger.warning("deepseek http error %s: %s", exc.code, detail)
-        raise RuntimeError(f"deepseek_http_error:{exc.code}:{detail}") from exc
+            logger.warning("%s http error %s: %s", provider, exc.code, detail)
+        raise RuntimeError(f"llm_http_error:{exc.code}:{detail}") from exc
     except URLError as exc:
         if logger is not None and hasattr(logger, "warning"):
-            logger.warning("deepseek network error: %s", exc)
-        raise RuntimeError("deepseek_network_error") from exc
+            logger.warning("%s network error: %s", provider, exc)
+        raise RuntimeError("llm_network_error") from exc
 
     try:
         data = json.loads(raw)
     except Exception as exc:
         if logger is not None and hasattr(logger, "warning"):
-            logger.warning("deepseek invalid json: %s", exc)
-        raise RuntimeError("deepseek_invalid_json") from exc
+            logger.warning("%s invalid json: %s", provider, exc)
+        raise RuntimeError("llm_invalid_json") from exc
 
     choices = data.get("choices", [])
     first = choices[0] if isinstance(choices, list) and choices else {}
@@ -144,8 +149,21 @@ def request_deepseek_chat(
         raise RuntimeError("llm_empty_answer")
 
     return {
-        "provider": "deepseek",
+        "provider": provider,
         "model": model,
         "text": text,
         "raw": data,
     }
+
+
+def deepseek_client_ready(config: Dict[str, Any]) -> bool:
+    return llm_client_ready(config)
+
+
+def request_deepseek_chat(
+    *,
+    config: Dict[str, Any],
+    user_message: str,
+    logger: Any | None = None,
+) -> Dict[str, Any]:
+    return request_llm_chat(config=config, user_message=user_message, logger=logger)

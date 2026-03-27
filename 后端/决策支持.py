@@ -7,7 +7,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
-from 后端.深度求索客户端 import deepseek_client_ready, request_deepseek_chat
+from 后端.深度求索客户端 import llm_client_ready, request_llm_chat
 
 
 class AssistantUnavailableError(RuntimeError):
@@ -20,7 +20,7 @@ class AssistantUnavailableError(RuntimeError):
 
 def _assistant_error_from_llm(exc: Exception) -> AssistantUnavailableError:
     text = str(exc or "")
-    if text.startswith("deepseek_http_error:"):
+    if text.startswith("llm_http_error:") or text.startswith("deepseek_http_error:"):
         parts = text.split(":", 2)
         status_code = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else 502
         detail = parts[2].strip() if len(parts) > 2 else ""
@@ -53,7 +53,7 @@ def _assistant_error_from_llm(exc: Exception) -> AssistantUnavailableError:
             detail="AI 服务暂未配置，请联系管理员。",
             status_code=503,
         )
-    if "deepseek_network_error" in text or "network" in text:
+    if "llm_network_error" in text or "deepseek_network_error" in text or "network" in text:
         return AssistantUnavailableError(
             code="llm_network_error",
             detail="AI 服务当前不可达，请稍后重试。",
@@ -1528,10 +1528,10 @@ class DecisionSupportService:
         question_text: str,
         logger: Any | None,
     ) -> Dict[str, Any]:
-        if not deepseek_client_ready(config):
+        if not llm_client_ready(config):
             raise RuntimeError("llm_unavailable")
 
-        response = request_deepseek_chat(
+        response = request_llm_chat(
             config=config,
             user_message=question_text,
             logger=logger,
