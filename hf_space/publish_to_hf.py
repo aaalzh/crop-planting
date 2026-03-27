@@ -97,6 +97,8 @@ def _set_space_runtime(api: HfApi, repo_id: str, artifacts_repo_id: str, token: 
     api.add_space_variable(repo_id=repo_id, key="HF_ARTIFACTS_REPO_TYPE", value="dataset", description="Artifacts repo type")
     api.add_space_variable(repo_id=repo_id, key="HF_ARTIFACTS_REVISION", value="main", description="Artifacts revision")
     api.add_space_variable(repo_id=repo_id, key="CROP_ACTIVE_RELEASE_POLICY", value="champion", description="Release policy")
+    api.add_space_variable(repo_id=repo_id, key="CROP_COOKIE_SAMESITE", value="none", description="Allow auth cookie in embedded Space app")
+    api.add_space_variable(repo_id=repo_id, key="CROP_COOKIE_SECURE", value="true", description="Required when SameSite=None")
     api.add_space_secret(repo_id=repo_id, key="HF_TOKEN", value=token, description="Used by the Space to download private artifacts")
 
 

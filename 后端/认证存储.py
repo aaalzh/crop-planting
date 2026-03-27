@@ -20,6 +20,8 @@ PBKDF2_ITERS = 240000
 USERNAME_PATTERN = re.compile(r"^[A-Za-z0-9_]{3,32}$")
 VALID_ROLES = {"admin", "user"}
 USERS_PATH_ENV = "CROP_USERS_PATH"
+COOKIE_SECURE_ENV = "CROP_COOKIE_SECURE"
+COOKIE_SAMESITE_ENV = "CROP_COOKIE_SAMESITE"
 
 
 def resolve_users_path(root: Path, config: Dict[str, Any]) -> Path:
@@ -37,20 +39,45 @@ def resolve_users_path(root: Path, config: Dict[str, Any]) -> Path:
     return (root / "数据" / "用户.json").resolve()
 
 
+def _bool_env(name: str, default: bool = False) -> bool:
+    raw = str(os.environ.get(name, "")).strip().lower()
+    if not raw:
+        return default
+    return raw in {"1", "true", "yes", "on"}
+
+
+def _cookie_policy() -> tuple[bool, str]:
+    secure = _bool_env(COOKIE_SECURE_ENV, False)
+    samesite = str(os.environ.get(COOKIE_SAMESITE_ENV, "lax")).strip().lower() or "lax"
+    if samesite not in {"lax", "strict", "none"}:
+        samesite = "lax"
+    if samesite == "none":
+        secure = True
+    return secure, samesite
+
+
 def set_auth_cookie(response: Response, token: str, ttl_seconds: int) -> None:
+    secure, samesite = _cookie_policy()
     response.set_cookie(
         key=AUTH_COOKIE_NAME,
         value=token,
         max_age=ttl_seconds,
         httponly=True,
-        samesite="lax",
-        secure=False,
+        samesite=samesite,
+        secure=secure,
         path="/",
     )
 
 
 def clear_auth_cookie(response: Response) -> None:
-    response.delete_cookie(key=AUTH_COOKIE_NAME, path="/")
+    secure, samesite = _cookie_policy()
+    response.delete_cookie(
+        key=AUTH_COOKIE_NAME,
+        path="/",
+        secure=secure,
+        httponly=True,
+        samesite=samesite,
+    )
 
 
 def _safe_read_json(path: Path) -> Dict[str, Any] | None:
