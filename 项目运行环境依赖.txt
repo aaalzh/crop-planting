@@ -30,13 +30,8 @@
   - ECharts 5.5.0：`前端/资源/依赖/图表库压缩版.js`
 
 5. 可选环境变量
-- CROP_LLM_API_KEY
-  说明：AI 助手 / 决策支持链路使用的通用聊天补全 API Key，Hugging Face Space 推荐使用
-- CROP_LLM_PROVIDER
-- CROP_LLM_MODEL
-- CROP_LLM_ENDPOINT
 - DEEPSEEK_API_KEY
-  说明：兼容旧配置；未迁移时仍可继续使用
+  说明：仅 AI 助手 / 决策支持链路需要，不配置也不影响基础推荐、训练、发布治理
 
 6. 项目内必须存在的数据与模型文件
 - 数据/映射/作物名称映射.csv

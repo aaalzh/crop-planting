@@ -39,11 +39,6 @@ datasets:
 
 如果需要启用 LLM 决策支持链路，请额外配置：
 
-- Secret: `CROP_LLM_API_KEY`
-- Variable: `CROP_LLM_PROVIDER`，默认 `deepseek`
-- Variable: `CROP_LLM_MODEL`，默认 `deepseek-chat`
-- Variable: `CROP_LLM_ENDPOINT`，默认 `https://api.deepseek.com/chat/completions`
-
-兼容旧配置：
-
 - Secret: `DEEPSEEK_API_KEY`
+
+Space 已默认指向 DeepSeek 的 provider / model / endpoint，无需额外改动。
