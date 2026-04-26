@@ -27,6 +27,8 @@ export const CROP_MAP = {
 
 export const $ = (id) => document.getElementById(id);
 const LOGIN_PAGE_URL = "/";
+const DEFAULT_PROTECTED_PAGE_URL = "/recommend";
+const ADMIN_PAGE_URL = "/admin";
 const STORAGE_KEYS = {
   reduceMotion: "crop_ui_reduce_motion"
 };
@@ -373,21 +375,14 @@ function bindShortcuts() {
     }
 
     if (!event.altKey || event.ctrlKey || event.metaKey) return;
-    const quickNav = {
-      "1": "/home",
-      "2": "/recommend",
-      "3": "/assistant",
-      "4": "/store",
-      "5": "/community",
-      "6": "/profile"
-    };
-    const url = quickNav[event.key];
-    if (!url) return;
+    if (!/^[1-9]$/.test(event.key)) return;
 
-    const navNode = Array.from(document.querySelectorAll(".nav-link")).find(
-      (node) => !node.hidden && (node.getAttribute("href") || "") === url
-    );
+    const navNode = Array.from(document.querySelectorAll(".nav-link")).filter((node) => !node.hidden)[
+      Number(event.key) - 1
+    ];
     if (navNode) {
+      const url = navNode.getAttribute("href") || "";
+      if (!url) return;
       event.preventDefault();
       window.location.assign(url);
     }
@@ -570,10 +565,41 @@ export function markActiveNav() {
   });
 }
 
+function normalizePath(path) {
+  const text = String(path || "").trim();
+  if (!text) return "/";
+  const normalized = text.replace(/\/+$/, "");
+  return normalized || "/";
+}
+
+function isAdminUser(user) {
+  return String(user?.role || "").toLowerCase() === "admin";
+}
+
+export function getDefaultProtectedUrl(user) {
+  return isAdminUser(user) ? ADMIN_PAGE_URL : DEFAULT_PROTECTED_PAGE_URL;
+}
+
+function redirectByRole(user) {
+  const current = normalizePath(window.location.pathname);
+  if (!isAdminUser(user) && current === ADMIN_PAGE_URL) {
+    const target = getDefaultProtectedUrl(user);
+    window.location.replace(target);
+    return true;
+  }
+
+  return false;
+}
+
 export function applyUserRoleUI(user) {
-  const isAdmin = String(user?.role || "").toLowerCase() === "admin";
-  document.querySelectorAll("[data-admin-only]").forEach((node) => {
-    node.hidden = !isAdmin;
+  const isAdmin = isAdminUser(user);
+  document.querySelectorAll(".nav-link").forEach((node) => {
+    const href = normalizePath(node.getAttribute("href") || "");
+    if (isAdmin) {
+      node.hidden = false;
+      return;
+    }
+    node.hidden = node.hasAttribute("data-admin-only") || href === ADMIN_PAGE_URL;
   });
 }
 
@@ -592,6 +618,9 @@ export function initPublicPage() {
 
 export async function initProtectedPage(userNameId = "userName") {
   const user = await requireUser();
+  if (redirectByRole(user)) {
+    return user;
+  }
   initShell();
   const userNode = $(userNameId);
   if (userNode) {
