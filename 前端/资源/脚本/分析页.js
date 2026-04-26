@@ -3,6 +3,13 @@ import { fetchAssistantAnswer } from "./决策接口.js";
 import { escapeHtml } from "./决策界面.js";
 
 const DEFAULT_SESSION_TITLE = "新对话";
+const initialFocusCrop = (() => {
+  try {
+    return new URLSearchParams(window.location.search).get("crop") || "";
+  } catch (error) {
+    return "";
+  }
+})();
 
 const state = {
   sessions: [
@@ -12,7 +19,8 @@ const state = {
       history: []
     }
   ],
-  active: "default"
+  active: "default",
+  focusCrop: String(initialFocusCrop || "").trim()
 };
 
 function activeSession() {
@@ -41,7 +49,14 @@ function syncHeader() {
   const lastAssistant = [...(session?.history || [])].reverse().find((item) => item.role === "assistant");
   const sourceNode = document.getElementById("assistantSourceHint");
   if (sourceNode) {
-    sourceNode.textContent = lastAssistant?.source?.label ? `来源：${lastAssistant.source.label}` : "";
+    const parts = [];
+    if (lastAssistant?.source?.label) {
+      parts.push(`来源：${lastAssistant.source.label}`);
+    }
+    if (state.focusCrop) {
+      parts.push(`聚焦作物：${state.focusCrop}`);
+    }
+    sourceNode.textContent = parts.join(" · ");
   }
 }
 
@@ -127,7 +142,7 @@ async function askQuestion() {
   setPageBusy(true);
 
   try {
-    const answer = await fetchAssistantAnswer(null, null, question);
+    const answer = await fetchAssistantAnswer(null, state.focusCrop || null, question);
     session.history.push({
       role: "assistant",
       text: answer.answer || "暂时无法回答。",

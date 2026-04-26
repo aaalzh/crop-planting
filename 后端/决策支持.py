@@ -295,6 +295,18 @@ def _pct_text(value: float | None, digits: int = 1) -> str:
     return f"{value:.{digits}f}%"
 
 
+def _ratio_pct_text(value: float | None, digits: int = 1) -> str:
+    if value is None:
+        return "-"
+    return f"{value * 100.0:.{digits}f}%"
+
+
+def _score_text(value: float | None, digits: int = 1) -> str:
+    if value is None:
+        return "-"
+    return f"{value:.{digits}f}/100"
+
+
 def _risk_level(risk: float | None) -> str:
     score = _safe_float(risk)
     if score is None:
@@ -595,6 +607,19 @@ def _truncate_text(text: str, limit: int = 240) -> str:
     return f"{raw[: max(0, limit - 1)].rstrip()}…"
 
 
+def _normalize_crop_token(value: str) -> str:
+    return str(value or "").strip().lower()
+
+
+def _crop_matches(candidate: str, crop: str) -> bool:
+    token = _normalize_crop_token(candidate)
+    if not token:
+        return False
+    crop_token = _normalize_crop_token(crop)
+    label_token = _normalize_crop_token(_crop_label(crop))
+    return token in {crop_token, label_token}
+
+
 class DecisionSupportService:
     def __init__(self, *, root: Path, output_dir: Path, logger: Any | None = None) -> None:
         self.root = root
@@ -617,6 +642,209 @@ class DecisionSupportService:
     def _write_json(self, path: Path, payload: Any) -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    def _find_row_by_crop(self, rows: List[Dict[str, Any]], crop: Optional[str]) -> Optional[Dict[str, Any]]:
+        token = _normalize_crop_token(str(crop or ""))
+        if not token:
+            return None
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            row_crop = str(row.get("crop") or "")
+            if _crop_matches(token, row_crop):
+                return row
+        return None
+
+    def _assistant_row_summary(self, row: Dict[str, Any], *, rank: Optional[int] = None) -> str:
+        crop = str(row.get("crop") or "")
+        crop_label = str(row.get("crop_label") or _crop_label(crop))
+        profile = row.get("decision_profile", {}) if isinstance(row.get("decision_profile"), dict) else {}
+        reasons = [str(item).strip() for item in (profile.get("reasons") or []) if str(item).strip()]
+        next_steps = [str(item).strip() for item in (profile.get("next_steps") or []) if str(item).strip()]
+        one_liner = _truncate_text(str(profile.get("one_liner") or ""), 90)
+        risk_value = _safe_float(row.get("risk"))
+
+        parts = [
+            f"推荐强度 {_score_text(_safe_float(row.get('recommend_strength')))}",
+            f"环境匹配 {_ratio_pct_text(_safe_float(row.get('env_prob')))}",
+            f"胜出概率 {_ratio_pct_text(_safe_float(row.get('prob_best')))}",
+            f"预计利润 {_money_text(_safe_float(row.get('profit')))}",
+            f"利润率 {_pct_text(_safe_float(row.get('margin_pct')))}",
+            f"风险 {f'{risk_value:.2f}' if risk_value is not None else '-'}（{_risk_level(risk_value)}）",
+        ]
+        style = str(profile.get("style") or "").strip()
+        if style:
+            parts.append(f"风格 {style}")
+        if one_liner:
+            parts.append(f"摘要 {one_liner}")
+        if reasons:
+            parts.append(f"原因 {'；'.join(reasons[:2])}")
+        if next_steps:
+            parts.append(f"建议 {'；'.join(next_steps[:2])}")
+
+        prefix = f"{rank}. " if rank is not None else ""
+        return f"{prefix}{crop_label}（{crop or '-'}）：{'；'.join(parts)}。"
+
+    def _assistant_env_lines(self, payload: Dict[str, Any]) -> List[str]:
+        lines: List[str] = []
+        env_input = payload.get("env_input")
+        if isinstance(env_input, dict) and env_input:
+            display_pairs = [
+                ("氮", env_input.get("N")),
+                ("磷", env_input.get("P")),
+                ("钾", env_input.get("K")),
+                ("温度", env_input.get("temperature")),
+                ("湿度", env_input.get("humidity")),
+                ("pH", env_input.get("ph")),
+                ("降雨量", env_input.get("rainfall")),
+            ]
+            rendered = [f"{label}={value}" for label, value in display_pairs if value is not None]
+            if rendered:
+                lines.append(f"最近一次推荐输入环境：{', '.join(rendered)}。")
+
+        env = payload.get("env", {}) if isinstance(payload.get("env"), dict) else {}
+        best_label = _crop_label(str(env.get("best_label") or ""))
+        best_prob = _safe_float(env.get("best_prob"))
+        confidence = _safe_float(env.get("confidence"))
+        risk = _safe_float(env.get("risk"))
+        warnings = [str(item).strip() for item in (env.get("warnings") or []) if str(item).strip()]
+        topk = env.get("topk") if isinstance(env.get("topk"), list) else []
+
+        summary_parts = []
+        if best_label and best_label != "-":
+            summary_parts.append(f"环境模型首选 {best_label}")
+        if best_prob is not None:
+            summary_parts.append(f"匹配概率 {_ratio_pct_text(best_prob)}")
+        if confidence is not None:
+            summary_parts.append(f"环境置信度 {_ratio_pct_text(confidence)}")
+        if risk is not None:
+            summary_parts.append(f"环境风险 {risk:.2f}")
+        if summary_parts:
+            lines.append(f"环境侧摘要：{'；'.join(summary_parts)}。")
+
+        if topk:
+            topk_text = "，".join(
+                [
+                    f"{_crop_label(str(item[0] if isinstance(item, (list, tuple)) and item else ''))} {_ratio_pct_text(_safe_float(item[1] if isinstance(item, (list, tuple)) and len(item) > 1 else None))}"
+                    for item in topk[:3]
+                ]
+            )
+            if topk_text:
+                lines.append(f"环境 Top 候选：{topk_text}。")
+        if warnings:
+            lines.append(f"环境提醒：{'；'.join(warnings[:3])}。")
+        return lines
+
+    def _build_assistant_context(self, *, payload: Dict[str, Any], crop: Optional[str]) -> Dict[str, Any]:
+        rows = [row for row in payload.get("results", []) if isinstance(row, dict)]
+        focus_row = self._find_row_by_crop(rows, crop)
+        preview_mode = str(payload.get("preview_mode") or "").strip() or None
+        has_context = bool(rows)
+        lines: List[str] = []
+
+        if preview_mode == "default_env":
+            lines.append("当前推荐上下文来自默认示例环境预览，不代表用户刚刚提交的最新实测输入。")
+        elif has_context:
+            lines.append("当前推荐上下文来自系统最近一次生成的种植推荐结果。")
+        else:
+            lines.append("当前没有可用的推荐结果上下文，请把回答限制在通用建议层面。")
+
+        lines.extend(self._assistant_env_lines(payload))
+
+        summary = payload.get("decision_summary", {}) if isinstance(payload.get("decision_summary"), dict) else {}
+        best_crop = summary.get("best_crop", {}) if isinstance(summary.get("best_crop"), dict) else {}
+        best_crop_code = str(best_crop.get("crop") or "").strip()
+        best_label = str(best_crop.get("crop_label") or _crop_label(best_crop_code)).strip()
+        if best_crop_code and best_label and best_label != "-":
+            headline_parts = [f"当前综合最优候选是 {best_label}"]
+            if best_crop.get("recommend_strength") is not None:
+                headline_parts.append(f"推荐强度 {_score_text(_safe_float(best_crop.get('recommend_strength')))}")
+            if best_crop.get("margin_pct") is not None:
+                headline_parts.append(f"预计利润率 {_pct_text(_safe_float(best_crop.get('margin_pct')))}")
+            if best_crop.get("risk") is not None:
+                headline_parts.append(f"风险 {_safe_float(best_crop.get('risk')):.2f}（{_risk_level(_safe_float(best_crop.get('risk')))}）")
+            reasons = [str(item).strip() for item in (best_crop.get("reasons") or []) if str(item).strip()]
+            if reasons:
+                headline_parts.append(f"主要原因 {'；'.join(reasons[:2])}")
+            lines.append(f"{'；'.join(headline_parts)}。")
+
+        if focus_row is not None:
+            lines.append(f"用户当前追问的作物：{self._assistant_row_summary(focus_row)}")
+        elif crop:
+            lines.append(f"用户指定关注作物“{str(crop).strip()}”，但它不在最近一次推荐结果中。")
+
+        if rows:
+            lines.append("最近一次推荐 Top3：")
+            for idx, row in enumerate(rows[:3], start=1):
+                lines.append(self._assistant_row_summary(row, rank=idx))
+
+        related = [
+            {
+                "crop": row.get("crop"),
+                "crop_label": row.get("crop_label") or _crop_label(str(row.get("crop") or "")),
+                "recommend_strength": _safe_float(row.get("recommend_strength")),
+                "style": ((row.get("decision_profile") or {}).get("style") if isinstance(row.get("decision_profile"), dict) else None),
+            }
+            for row in rows[:3]
+        ]
+
+        if focus_row is not None:
+            source_label = f"AI 回答（结合{str(focus_row.get('crop_label') or _crop_label(str(focus_row.get('crop') or '')))}推荐结果）"
+            question_scope = "crop_focus"
+            resolved_crop = str(focus_row.get("crop") or "").strip() or None
+            resolved_crop_label = str(focus_row.get("crop_label") or _crop_label(str(focus_row.get("crop") or ""))).strip() or None
+        elif has_context and preview_mode == "default_env":
+            source_label = "AI 回答（结合默认预览推荐）"
+            question_scope = "recommendation_context"
+            resolved_crop = None
+            resolved_crop_label = None
+        elif has_context:
+            source_label = "AI 回答（结合最近推荐结果）"
+            question_scope = "recommendation_context"
+            resolved_crop = None
+            resolved_crop_label = None
+        else:
+            source_label = "AI 回答"
+            question_scope = "general"
+            resolved_crop = str(crop or "").strip() or None
+            resolved_crop_label = _crop_label(resolved_crop) if resolved_crop else None
+
+        return {
+            "has_context": has_context,
+            "lines": lines,
+            "related": related,
+            "source_label": source_label,
+            "question_scope": question_scope,
+            "resolved_crop": resolved_crop,
+            "resolved_crop_label": resolved_crop_label,
+        }
+
+    def _assistant_system_prompt(self) -> str:
+        return _clean_text(
+            """
+你是农作物种植决策助手。
+回答时请严格遵守以下规则：
+1. 优先使用系统提供的推荐上下文，不要编造不存在的价格、利润、概率、风险或日期。
+2. 如果上下文不足以支撑明确结论，要直接说明“基于当前推荐结果无法确认”，再给出保守建议。
+3. 使用简体中文，先给结论，再给理由；保持回答紧凑、直接、可执行。
+4. 如果用户追问某个作物，先回答该作物，再与当前最优候选做一句简短比较。
+5. 不要假装看过系统中没有提供的图表、原始数据或实时行情。
+            """
+        )
+
+    def _assistant_user_message(self, *, question_text: str, context_lines: List[str]) -> str:
+        context_block = "\n".join([f"- {line}" for line in context_lines if str(line).strip()])
+        return _clean_text(
+            f"""
+请结合下面的系统推荐上下文回答用户问题。
+
+[系统推荐上下文]
+{context_block or "- 当前没有可用的推荐上下文。"}
+
+[用户问题]
+{question_text}
+            """
+        )
 
     def _ranking_maps(self, rows: List[Dict[str, Any]]) -> Dict[str, Dict[str, int]]:
         def _rank(key: str, reverse: bool) -> Dict[str, int]:
@@ -894,6 +1122,7 @@ class DecisionSupportService:
         record = {
             "created_at": datetime.now().isoformat(timespec="seconds"),
             "env": payload.get("env", {}),
+            "env_input": copy.deepcopy(payload.get("env_input", {})) if isinstance(payload.get("env_input"), dict) else {},
             "release": {
                 "run_id": (release.get("run_id") if isinstance(release, dict) else None),
                 "status": (release.get("status") if isinstance(release, dict) else None),
@@ -1526,6 +1755,8 @@ class DecisionSupportService:
         *,
         config: Dict[str, Any],
         question_text: str,
+        system_message: Optional[str],
+        source_label: str,
         logger: Any | None,
     ) -> Dict[str, Any]:
         if not llm_client_ready(config):
@@ -1534,6 +1765,7 @@ class DecisionSupportService:
         response = request_llm_chat(
             config=config,
             user_message=question_text,
+            system_message=system_message,
             logger=logger,
         )
         answer = str(response.get("text") or "").strip()
@@ -1545,7 +1777,7 @@ class DecisionSupportService:
             "bullets": [],
             "source": {
                 "mode": "llm",
-                "label": "AI 回答",
+                "label": source_label,
                 "provider": response.get("provider"),
                 "model": response.get("model"),
             },
@@ -1570,10 +1802,23 @@ class DecisionSupportService:
                 detail="AI 服务暂未配置，请联系管理员。",
                 status_code=503,
             )
+        resolved = self._ensure_payload(
+            payload=payload,
+            config=config,
+            recommend_with_source=recommend_with_source,
+            logger=logger,
+        )
+        assistant_context = self._build_assistant_context(payload=resolved, crop=crop)
+        llm_question = self._assistant_user_message(
+            question_text=display_question,
+            context_lines=assistant_context.get("lines", []),
+        )
         try:
             chosen = self._answer_by_llm(
                 config=config,
-                question_text=display_question,
+                question_text=llm_question,
+                system_message=self._assistant_system_prompt(),
+                source_label=str(assistant_context.get("source_label") or "AI 回答"),
                 logger=logger,
             )
         except Exception as exc:
@@ -1584,14 +1829,14 @@ class DecisionSupportService:
         return {
             "question_id": question_id,
             "question": display_question,
-            "question_scope": "general",
-            "crop": None,
-            "crop_label": None,
+            "question_scope": assistant_context.get("question_scope") or "general",
+            "crop": assistant_context.get("resolved_crop"),
+            "crop_label": assistant_context.get("resolved_crop_label"),
             "answer": chosen.get("answer"),
             "bullets": chosen.get("bullets", []),
-            "related": [],
+            "related": assistant_context.get("related", []),
             "source": chosen.get("source", {}),
-            "preview_mode": None,
+            "preview_mode": resolved.get("preview_mode"),
         }
 
 

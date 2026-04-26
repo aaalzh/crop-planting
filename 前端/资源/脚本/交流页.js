@@ -12,7 +12,7 @@ function threadById(id) {
 }
 
 function activeThread() {
-  return threadById(state.active) || state.threads[0] || null;
+  return threadById(state.active) || null;
 }
 
 function parseHash() {
@@ -21,18 +21,34 @@ function parseHash() {
 }
 
 function updateHash(id) {
-  const next = `#thread-${encodeURIComponent(id)}`;
-  if (window.location.hash !== next) {
-    window.history.replaceState(null, "", next);
-  }
+  const nextHash = id ? `#thread-${encodeURIComponent(id)}` : "";
+  if (window.location.hash === nextHash) return;
+  const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+  window.history.replaceState(null, "", nextUrl);
 }
 
 function setActive(id, updateUrl = true) {
   if (!threadById(id)) return;
   state.active = id;
   if (updateUrl) updateHash(id);
-  renderThreadList();
-  renderReader();
+  renderAll();
+}
+
+function clearActive(updateUrl = true) {
+  state.active = null;
+  if (updateUrl) updateHash("");
+  renderAll();
+}
+
+function renderLayout() {
+  const shell = document.getElementById("communityShell");
+  const feedCard = document.getElementById("communityFeedCard");
+  const readerCard = document.getElementById("communityReader");
+  const reading = Boolean(activeThread());
+
+  shell?.classList.toggle("is-reading", reading);
+  feedCard?.classList.toggle("is-hidden", reading);
+  readerCard?.classList.toggle("is-hidden", !reading);
 }
 
 function renderThreadList() {
@@ -50,15 +66,20 @@ function renderThreadList() {
                 <img src="${escapeHtml(item.cover_image || "")}" alt="${escapeHtml(item.cover_alt || item.title || "帖子封面")}" loading="lazy">
               </div>
               <div class="community-thread-copy">
+                <div class="community-thread-topline">
+                  <span class="tone-pill tone-muted">${escapeHtml(item.tag || "论坛")}</span>
+                  ${item.date ? `<span>${escapeHtml(item.date)}</span>` : ""}
+                </div>
                 <div class="stack-head">
                   <strong>${escapeHtml(item.title || "-")}</strong>
-                  <span class="tone-pill tone-muted">${escapeHtml(item.tag || "论坛")}</span>
                 </div>
                 <p>${escapeHtml(item.summary || "")}</p>
                 <div class="community-meta">
                   <span>${escapeHtml(item.author || "匿名农友")}</span>
+                  ${item.location ? `<span>${escapeHtml(item.location)}</span>` : ""}
                   <span>${escapeHtml(item.stats || "持续讨论中")}</span>
                 </div>
+                <span class="community-thread-cta">点击查看完整帖子</span>
               </div>
             </button>
           `
@@ -76,27 +97,37 @@ function renderReader() {
   const thread = activeThread();
   if (!container) return;
   if (!thread) {
-    container.innerHTML = cardEmpty("暂时没有可阅读的帖子。");
+    container.innerHTML = "";
     return;
   }
 
   const body = (thread.body || []).map((row) => `<p>${escapeHtml(row)}</p>`).join("");
-  const points = (thread.key_points || []).filter(Boolean).map((row) => `<li>${escapeHtml(row)}</li>`).join("");
-  const comments = (thread.comments || [])
-    .map(
-      (row) => `
-        <div class="community-comment-item">
-          <div class="community-comment-head">
-            <strong>${escapeHtml(row.author || "匿名农友")}</strong>
-            <span>${escapeHtml(row.time || "")}</span>
-          </div>
-          <p>${escapeHtml(row.text || "")}</p>
-        </div>
-      `
-    )
-    .join("");
+  const pointRows = (thread.key_points || []).filter(Boolean);
+  const commentRows = Array.isArray(thread.comments) ? thread.comments : [];
+  const points = pointRows.length
+    ? `<ul class="text-list">${pointRows.map((row) => `<li>${escapeHtml(row)}</li>`).join("")}</ul>`
+    : `<p class="muted">暂无帖子要点。</p>`;
+  const comments = commentRows.length
+    ? commentRows
+        .map(
+          (row) => `
+            <div class="community-comment-item">
+              <div class="community-comment-head">
+                <strong>${escapeHtml(row.author || "匿名农友")}</strong>
+                <span>${escapeHtml(row.time || "")}</span>
+              </div>
+              <p>${escapeHtml(row.text || "")}</p>
+            </div>
+          `
+        )
+        .join("")
+    : `<p class="muted">暂无评论。</p>`;
 
   container.innerHTML = `
+    <div class="community-reader-toolbar">
+      <button id="communityBackBtn" class="btn btn-secondary" type="button">返回帖子列表</button>
+      <span class="muted">完整帖子阅读</span>
+    </div>
     <div class="community-reader-hero">
       <img src="${escapeHtml(thread.cover_image || "")}" alt="${escapeHtml(thread.cover_alt || thread.title || "帖子封面")}" loading="lazy">
     </div>
@@ -105,36 +136,31 @@ function renderReader() {
       <h2>${escapeHtml(thread.title || "")}</h2>
       <div class="community-reader-meta-row">
         <span>${escapeHtml(thread.author || "匿名农友")}</span>
-        <span>${escapeHtml(thread.date || "")}</span>
-        <span>${escapeHtml(thread.location || "")}</span>
-        <span>${escapeHtml(thread.read_time || "")}</span>
-        <span>${escapeHtml(thread.stats || "")}</span>
+        ${thread.date ? `<span>${escapeHtml(thread.date)}</span>` : ""}
+        ${thread.location ? `<span>${escapeHtml(thread.location)}</span>` : ""}
+        ${thread.read_time ? `<span>${escapeHtml(thread.read_time)}</span>` : ""}
+        ${thread.stats ? `<span>${escapeHtml(thread.stats)}</span>` : ""}
       </div>
       <p class="community-reader-lead">${escapeHtml(thread.summary || "")}</p>
       <div class="community-reader-section">${body}</div>
       <div class="community-reader-highlight">
         <h3>帖子要点</h3>
-        <ul class="text-list">${points}</ul>
+        ${points}
       </div>
       <div class="community-reader-highlight">
         <h3>评论区</h3>
         <div class="community-comment-list">${comments}</div>
       </div>
-      <div class="community-image-credit">
-        <span>封面署名：${escapeHtml(thread.cover_credit || "可再用素材")}</span>
-        <div class="store-source-links">
-          <a class="text-link" href="${escapeHtml(thread.cover_source_url || "#")}" target="_blank" rel="noreferrer">图片来源</a>
-          <a class="text-link" href="${escapeHtml(thread.cover_license_url || "#")}" target="_blank" rel="noreferrer">${escapeHtml(thread.cover_license_label || "许可信息")}</a>
-        </div>
-      </div>
     </div>
   `;
+  container.querySelector("#communityBackBtn")?.addEventListener("click", () => clearActive());
   refreshInteractions(container);
 }
 
 function renderAll() {
   renderThreadList();
   renderReader();
+  renderLayout();
   refreshInteractions(document);
 }
 
@@ -145,17 +171,15 @@ async function main() {
     state.threads = data.highlights || [];
     document.getElementById("communitySummaryTitle").textContent = data.headline || "经验交流";
     document.getElementById("communitySummaryNote").textContent = data.subheadline || "";
+
     const hashThread = parseHash();
-    state.active = threadById(hashThread)?.id || state.threads[0]?.id || null;
+    state.active = threadById(hashThread)?.id || null;
     renderAll();
 
     window.addEventListener("hashchange", () => {
       const id = parseHash();
-      if (threadById(id)) {
-        state.active = id;
-        renderThreadList();
-        renderReader();
-      }
+      state.active = threadById(id)?.id || null;
+      renderAll();
     });
   } catch (error) {
     notify(error.message || "经验交流页面加载失败", "error");

@@ -276,6 +276,13 @@ createApp({
         name
       });
     },
+    updateAssistantEntry() {
+      const entry = document.querySelector("[data-assistant-entry]");
+      if (!entry) return;
+      const crop = String(this.selectedCrop || "").trim();
+      const focusCrop = crop ? cropName(crop) : "";
+      entry.setAttribute("href", focusCrop ? `/assistant?crop=${encodeURIComponent(focusCrop)}` : "/assistant");
+    },
     applyPriceDailyLegendSelection(selected, datasets) {
       const chart = this.charts.priceDaily;
       if (!chart) return;
@@ -427,6 +434,11 @@ createApp({
       this.visualStatusText = String(text || "");
       this.visualError = Boolean(isError);
       this.visualErrorText = isError ? this.visualStatusText : "";
+    },
+    clearVisualCharts() {
+      ["priceDaily", "priceForecastDetail", "priceWindowSeasonal", "yield", "cost", "profile"].forEach((key) => {
+        this.charts?.[key]?.clear?.();
+      });
     },
     assignEnv(env) {
       INPUT_KEYS.forEach((key) => {
@@ -1311,6 +1323,10 @@ createApp({
     },
     renderVisualCharts() {
       if (!this.initVisualCharts()) return;
+      if (!this.selectedRow) {
+        this.clearVisualCharts();
+        return;
+      }
 
       const priceHistory = this.toDatePairs(this.visuals?.price?.history);
       const priceMa30 = this.toDatePairs(this.visuals?.price?.ma30);
@@ -2631,6 +2647,7 @@ createApp({
       const crop = String(row?.crop || "");
       if (!crop) return;
       this.selectedCrop = crop;
+      this.updateAssistantEntry();
       await this.$nextTick();
       this.renderDecisionSupportCharts();
       await this.loadCropVisuals();
@@ -2717,11 +2734,13 @@ createApp({
 
         if (this.rows.length) {
           this.selectedCrop = payload?.env?.best_label || this.rows[0].crop;
+          this.updateAssistantEntry();
           await this.$nextTick();
           this.renderDecisionSupportCharts();
           await this.loadCropVisuals();
         } else {
           this.selectedCrop = "";
+          this.updateAssistantEntry();
           this.visuals = emptyVisualPayload();
           this.setVisualStatus("当前推荐结果为空，暂无可视化数据。", false);
           this.renderDecisionSupportCharts();
@@ -2739,6 +2758,7 @@ createApp({
     try {
       await initProtectedPage();
       await this.fillDefault(false);
+      this.updateAssistantEntry();
       this.initVisualCharts();
       this.renderDecisionSupportCharts();
       this.renderVisualCharts();

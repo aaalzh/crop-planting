@@ -12,7 +12,7 @@
       <h1 class="brand">农作物决策助手</h1>
       <nav class="nav-links">
         <a class="nav-link" href="/recommend">智能推荐</a>
-        <a class="nav-link" href="/assistant">AI 助手</a>
+        <a class="nav-link" href="/assistant" data-assistant-entry>AI 助手</a>
         <a class="nav-link" href="/store">农资商城</a>
         <a class="nav-link" href="/community">经验交流</a>
         <a class="nav-link" href="/profile">我的</a>
@@ -110,7 +110,7 @@
           <span v-for="item in topkItems" :key="`${item.rank}-${item.crop}`" class="pill">第{{ item.rank }}候选 · {{ cropName(item.crop) }} {{ formatMetric('env_prob', item.prob) }}</span>
         </div>
 
-        <h3 style="margin-top:16px;">推荐强度可视化（增强版）</h3>
+        <h3 style="margin-top:16px;">推荐强度可视化</h3>
         <div class="segmented score-viz-tabs" role="tablist" aria-label="推荐强度视图切换" style="margin-top:10px;">
           <button type="button" :class="['seg-btn', { active: scoreView === 'summary' }]" @click="setScoreView('summary')">强度</button>
           <button type="button" :class="['seg-btn', { active: scoreView === 'decomp' }]" @click="setScoreView('decomp')">拆解</button>

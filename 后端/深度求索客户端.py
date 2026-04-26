@@ -4,7 +4,7 @@ import json
 import os
 import re
 import ssl
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
@@ -80,6 +80,8 @@ def request_llm_chat(
     *,
     config: Dict[str, Any],
     user_message: str,
+    system_message: Optional[str] = None,
+    extra_messages: Optional[List[Dict[str, str]]] = None,
     logger: Any | None = None,
 ) -> Dict[str, Any]:
     llm_cfg = config.get("llm", {}) if isinstance(config, dict) else {}
@@ -97,11 +99,23 @@ def request_llm_chat(
     max_tokens = _safe_int(llm_cfg.get("max_tokens"))
     temperature = _safe_float(llm_cfg.get("temperature"))
 
+    messages: List[Dict[str, str]] = []
+    if system_message:
+        messages.append({"role": "system", "content": str(system_message)})
+    if isinstance(extra_messages, list):
+        for item in extra_messages:
+            if not isinstance(item, dict):
+                continue
+            role = str(item.get("role") or "").strip()
+            content = str(item.get("content") or "").strip()
+            if role not in {"system", "user", "assistant"} or not content:
+                continue
+            messages.append({"role": role, "content": content})
+    messages.append({"role": "user", "content": str(user_message or "")})
+
     payload: Dict[str, Any] = {
         "model": model,
-        "messages": [
-            {"role": "user", "content": str(user_message or "")},
-        ],
+        "messages": messages,
         "stream": False,
     }
     if max_tokens is not None:
@@ -164,6 +178,14 @@ def request_deepseek_chat(
     *,
     config: Dict[str, Any],
     user_message: str,
+    system_message: Optional[str] = None,
+    extra_messages: Optional[List[Dict[str, str]]] = None,
     logger: Any | None = None,
 ) -> Dict[str, Any]:
-    return request_llm_chat(config=config, user_message=user_message, logger=logger)
+    return request_llm_chat(
+        config=config,
+        user_message=user_message,
+        system_message=system_message,
+        extra_messages=extra_messages,
+        logger=logger,
+    )
